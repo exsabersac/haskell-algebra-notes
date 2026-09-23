@@ -34,6 +34,7 @@
 13. [定义与连贯](docs/幺半范畴/定义与连贯.md)
 14. [例子与 Monad](docs/幺半范畴/例子与Monad.md)
 15. [是不是幺半群](docs/幺半范畴/是不是幺半群.md)
+16. [自由幺半群与列表](docs/幺半范畴/自由幺半群与列表.md)
 
 ### 可运行演示代码
 
@@ -44,7 +45,7 @@
 | [`src/Algebra/Core.hs`](src/Algebra/Core.hs) | 定义 / Fix编码 / 常见组合 | 积木：`Fix`、`Free`、`Sum`、`Const`、`Product`、`Compose` |
 | [`src/InitialAlgebra/Demo.hs`](src/InitialAlgebra/Demo.hs) | [初始代数](docs/初始代数/) | F-代数、`cata`、带 `Lit` 的 `ExprF`、Lambek in/out |
 | [`src/FreeDemo/Demo.hs`](src/FreeDemo/Demo.hs) | [Free](docs/Free/) | 生成元、`Free ≅ Fix (Sum (Const a) f)`、`foldFree = cata`、`Free ((,) e)` |
-| [`src/FunctorCombo/Demo.hs`](src/FunctorCombo/Demo.hs) | [函子组合](docs/函子组合/) | `ListF` / `NonEmptyF`、`Sum`/`Product`/`Const` 草图；见作用与组合能力 |
+| [`src/FunctorCombo/Demo.hs`](src/FunctorCombo/Demo.hs) | [函子组合](docs/函子组合/) · [自由幺半群与列表](docs/幺半范畴/自由幺半群与列表.md) | `ListF` / `NonEmptyF`、`Sum`/`Product`/`Const` 草图；`μ(ListF)≅[]` 亦见自由 monoid 笔记 |
 | [`app/Main.hs`](app/Main.hs) | — | `cabal run` 入口 |
 
 ```bash
