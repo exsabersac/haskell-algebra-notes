@@ -1,0 +1,103 @@
+# 常见函子组合：`Fix (Sum (Const a) f)` 之外还有什么
+
+`Fix` / `Free` 外面那一层是「取最小解」；**中间拼进去的函子组合**才决定树长什么样、有哪些效果。`Sum (Const a) f` 只是最常见的一种拼法。
+
+## 1. 常用积木
+
+| 组合子 | 约等于 | 在树上的含义 |
+|--------|--------|----------------|
+| `Const c` | 常对象 \(c\) | 叶子／标签，不递归 |
+| `Identity` | \(X \mapsto X\) | 单层包装、延迟一层 |
+| `Sum f g` / `f :+: g` | \(f + g\) | **二选一**（多构造器、多效果） |
+| `Product f g` / `f :*: g` | \(f \times g\) | **同时要两边**（配对、并列注解） |
+| `Compose f g` / `f :.: g` | \(f \circ g\) | 外层 `f` 里再嵌 `g` 形状 |
+
+递归容器本身：
+
+| 外壳 | 含义 |
+|------|------|
+| `Fix f` | \(\mu f\)，闭递归类型 |
+| `Free f a` | \(\mu(a + f)\)，开口自由代数／自由 monad |
+| `Cofree f a` | 带注解的余递归（对偶一侧） |
+| `Nu f` / 终余代数 | 最大不动点，流、无限树 |
+
+## 2. 和 `Sum (Const a) f` 同族的常见拼法
+
+**生成元叶 + 一种形状**
+
+```text
+Fix (Sum (Const a) f)  ≅  Free f a
+```
+
+**签名里自带常量叶（闭 ADT）**
+
+```text
+Fix (Sum (Const Int) (Sum AddF NegF))   -- Lit | Add | Neg
+```
+
+**两种效果的和（Data types à la carte）**
+
+```text
+Free (Sum f g) a  ≅  自由地混用 f-指令与 g-指令
+```
+
+```haskell
+type Teletype a = Free (Sum ReadF WriteF) a
+```
+
+**形状 × 注解**
+
+```text
+Fix (Product f (Const e))     -- 每个节点旁挂 e
+Cofree f a                    -- 更标准：每层都有 a 注解
+```
+
+**列表／树等容器形状**
+
+```text
+ListF e r  ≅  Sum (Const ()) (Product (Const e) Identity)
+--           Nil          +   Cons e r
+
+NonEmptyF e r  ≅  Product (Const e) (Sum (Const ()) Identity)
+--               头 e × (尾空 | 尾继续)
+```
+
+## 3. 「换中间式子 → 换含义」对照
+
+```text
+μ Y.  f Y                 → 闭递归结构（纯 ADT）
+μ Y.  a + f Y             → Free f a：开口 + 可 >>=
+μ Y.  1 + e × Y           → 列表 [e]
+μ Y.  e × (1 + Y)         → 非空列表 NonEmpty e
+μ Y.  e + Y × Y           → 叶标 e 的二叉树
+μ Y.  (f + g) Y           → 多构造器／多效果合一的闭语法
+μ Y.  a + (f + g) Y       → 多效果的自由 monad
+ν Y.  e × Y               → 流 Stream e（最大不动点）
+ν Y.  a × f Y             → 近似 Cofree（层上带 a）
+```
+
+同一套「取 \(\mu\)／\(\nu\)」，只改中间多项式，效果就变。
+
+## 4. 工程里特别常见的几组
+
+1. **效果语言**：`Free (f :+: g :+: h) a` — 用 `Sum` 叠指令集；生成元 `a` 当返回值。
+2. **闭语法 vs 开口语法**：`Fix ExprF` vs `Free ExprF Var`。
+3. **注解**：`Cofree f ann` 或 `Fix (f :*: Const ann)`。
+4. **一层包装**：`Free Maybe`、`Free ((,) e)`（早停、Writer）比 `Free Identity` 更常见。
+5. **`Compose`**：多与效果顺序、可遍历、monad transformer 相关。
+6. **对偶侧**：余代数组合；流、事件、zip。
+
+## 5. 怎么记「还能怎么拼」
+
+问三个问题：
+
+1. **叶从哪来？** 无叶／`Const c`／外部 `a`（`Sum (Const a)`）
+2. **一层节点是选一还是要俩？** `Sum` vs `Product`
+3. **取最小还是最大解？** `Fix`／`Free`（\(\mu\)）vs `Nu`／`Cofree`（\(\nu\)）
+
+`Sum (Const a) f` 的答案是：叶来自 `a`，节点形状是 `f`，取最小解 —— 所以是自由代数／自由 monad。
+
+## 6. 一句话
+
+中间式子不同，不是换了折叠算法，而是换了**允许出现的一层形状**。  
+`cata`／`foldFree` 仍是那张交换图；变的是 \(F\)（或 \(a+F\)、\(F+G\)、\(F\times H\)…）里到底有哪些分支。

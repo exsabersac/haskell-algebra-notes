@@ -4,6 +4,18 @@
 
 ---
 
+## 续篇目录
+
+后续讨论已拆成独立文档，可按主题查阅：
+
+1. [Free 中的生成元](docs/01-generators-in-free.md)
+2. [并排：`Fix` 与 `Free ExprF`](docs/02-fix-vs-free-expr.md)
+3. [`foldFree` 与 `cata` 的交换图对齐](docs/03-foldfree-and-cata.md)
+4. [编码：`Free ≅ Fix (Sum (Const a) f)`](docs/04-fix-sum-const-encoding.md)
+5. [常见函子组合](docs/05-functor-combinations.md)
+
+---
+
 ## 1. Algebra 在 Haskell 里有几层意思
 
 「Algebra」不是某一个固定的类型类名，常见有四层：
