@@ -1,6 +1,6 @@
 {-# LANGUAGE DeriveFunctor #-}
 -- | 手写的 Fix / Free / 函子积木与 fold。
--- 对应文档：docs/初始代数/定义.md、docs/Free/Fix编码.md、docs/函子组合/常见组合.md
+-- 对应文档：docs/初始代数/定义.md、docs/Free/Fix编码.md、docs/函子组合/（常见组合、作用与组合能力、函子范畴上的代数）
 module Algebra.Core
   ( Fix(..)
   , cata

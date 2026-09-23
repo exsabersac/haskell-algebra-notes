@@ -1,6 +1,6 @@
 {-# LANGUAGE DeriveFunctor #-}
 -- | 函子组合草图：Sum / Product / Const / Compose、ListF、NonEmptyF。
--- 对应：docs/函子组合/常见组合.md
+-- 对应：docs/函子组合/（常见组合、作用与组合能力、函子范畴上的代数）
 module FunctorCombo.Demo
   ( ListF(..)
   , listToFix

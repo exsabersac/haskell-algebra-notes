@@ -25,6 +25,14 @@
 ### [函子组合](docs/函子组合/)
 
 9. [常见组合](docs/函子组合/常见组合.md)
+10. [函子的作用与组合能力](docs/函子组合/函子的作用与组合能力.md)
+11. [函子范畴上的代数](docs/函子组合/函子范畴上的代数.md)
+
+### [幺半范畴](docs/幺半范畴/)
+
+12. [定义与连贯](docs/幺半范畴/定义与连贯.md)
+13. [例子与 Monad](docs/幺半范畴/例子与Monad.md)
+14. [是不是幺半群](docs/幺半范畴/是不是幺半群.md)
 
 ### 可运行演示代码
 
@@ -35,7 +43,7 @@
 | [`src/Algebra/Core.hs`](src/Algebra/Core.hs) | 定义 / Fix编码 / 常见组合 | 积木：`Fix`、`Free`、`Sum`、`Const`、`Product`、`Compose` |
 | [`src/InitialAlgebra/Demo.hs`](src/InitialAlgebra/Demo.hs) | [初始代数](docs/初始代数/) | F-代数、`cata`、带 `Lit` 的 `ExprF`、Lambek in/out |
 | [`src/FreeDemo/Demo.hs`](src/FreeDemo/Demo.hs) | [Free](docs/Free/) | 生成元、`Free ≅ Fix (Sum (Const a) f)`、`foldFree = cata`、`Free ((,) e)` |
-| [`src/FunctorCombo/Demo.hs`](src/FunctorCombo/Demo.hs) | [函子组合](docs/函子组合/) | `ListF` / `NonEmptyF`、`Sum`/`Product`/`Const` 草图 |
+| [`src/FunctorCombo/Demo.hs`](src/FunctorCombo/Demo.hs) | [函子组合](docs/函子组合/) | `ListF` / `NonEmptyF`、`Sum`/`Product`/`Const` 草图；见作用与组合能力 |
 | [`app/Main.hs`](app/Main.hs) | — | `cabal run` 入口 |
 
 ```bash
