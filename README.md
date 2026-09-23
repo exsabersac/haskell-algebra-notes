@@ -26,6 +26,23 @@
 
 9. [常见组合](docs/函子组合/常见组合.md)
 
+### 可运行演示代码
+
+手写 `Fix` / `Free` / `cata` / `foldFree`（仅依赖 `base`），按文档主题分模块：
+
+| 模块 | 对应文档 | 内容 |
+|------|----------|------|
+| [`src/Algebra/Core.hs`](src/Algebra/Core.hs) | 定义 / Fix编码 / 常见组合 | 积木：`Fix`、`Free`、`Sum`、`Const`、`Product`、`Compose` |
+| [`src/InitialAlgebra/Demo.hs`](src/InitialAlgebra/Demo.hs) | [初始代数](docs/初始代数/) | F-代数、`cata`、带 `Lit` 的 `ExprF`、Lambek in/out |
+| [`src/FreeDemo/Demo.hs`](src/FreeDemo/Demo.hs) | [Free](docs/Free/) | 生成元、`Free ≅ Fix (Sum (Const a) f)`、`foldFree = cata`、`Free ((,) e)` |
+| [`src/FunctorCombo/Demo.hs`](src/FunctorCombo/Demo.hs) | [函子组合](docs/函子组合/) | `ListF` / `NonEmptyF`、`Sum`/`Product`/`Const` 草图 |
+| [`app/Main.hs`](app/Main.hs) | — | `cabal run` 入口 |
+
+```bash
+cabal build
+cabal run algebra-demos
+```
+
 ---
 
 ## 1. Algebra 在 Haskell 里有几层意思
