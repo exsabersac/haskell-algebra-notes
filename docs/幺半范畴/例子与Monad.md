@@ -58,6 +58,8 @@ join . join        = join . fmap join
 
 `>>=` 可由 `join` 与 `fmap` 恢复：`m >>= k = join (fmap k m)`。因此「monad 是端函子范畴里的幺半群」不是比喻，而是 monoid 对象的特例。
 
+自由 monad 则是该幺半范畴里由自函子 \(f\) 生成的**自由 monoid-对象**（对偶于 Set 里的自由 monoid）；对象层与类型族澄清见 [自由函子与自由代数](../Free/自由函子与自由代数.md)。
+
 ## 5. `Compose` ≠ `Product` / `Sum`
 
 | | `Compose f g` | `Product f g` / `Sum f g` |

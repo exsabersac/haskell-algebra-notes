@@ -112,3 +112,11 @@ X ↦ Free_F(X) 做成的 monad    →  Free F       （自由 monad）
 **「两个只是不动点公式不同？」**  
 —— 造树方式上：对。  
 —— 概念位置上：还差初始性相对谁、有没有生成元、能否做成 monad。
+
+---
+
+## 另见
+
+自由 monoid 与自由 monad 是同一「自由 monoid-对象」模式，分别落在 \((\mathbf{Set},\times,1)\) 与 \((\mathrm{End},\circ,\mathrm{Id})\)（不是某一个固定 \(\mathrm{Alg}(F)\) 的两次取值）。  
+详见 [自由函子与自由代数](../Free/自由函子与自由代数.md)。
+
