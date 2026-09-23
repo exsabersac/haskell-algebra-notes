@@ -4,15 +4,24 @@
 
 ---
 
-## 续篇目录
+## 文档目录
 
-后续讨论已拆成独立文档，可按主题查阅：
+讨论已按主题拆成独立文档：
 
-1. [Free 中的生成元](docs/01-generators-in-free.md)
-2. [并排：`Fix` 与 `Free ExprF`](docs/02-fix-vs-free-expr.md)
-3. [`foldFree` 与 `cata` 的交换图对齐](docs/03-foldfree-and-cata.md)
-4. [编码：`Free ≅ Fix (Sum (Const a) f)`](docs/04-fix-sum-const-encoding.md)
-5. [常见函子组合](docs/05-functor-combinations.md)
+### 初始代数
+
+1. [初始代数的定义](docs/01-initial-algebra-definition.md)
+2. [初始代数与不动点](docs/02-initial-algebra-and-fixpoints.md)
+3. [初始代数与递归 ADT](docs/03-initial-algebra-and-recursive-adt.md)
+4. [初始代数、自由代数与 Monad](docs/04-initial-vs-free-vs-monad.md)
+
+### Free、fold 与函子组合
+
+5. [Free 中的生成元](docs/11-generators-in-free.md)
+6. [并排：`Fix` 与 `Free ExprF`](docs/12-fix-vs-free-expr.md)
+7. [`foldFree` 与 `cata` 的交换图对齐](docs/13-foldfree-and-cata.md)
+8. [编码：`Free ≅ Fix (Sum (Const a) f)`](docs/14-fix-sum-const-encoding.md)
+9. [常见函子组合](docs/15-functor-combinations.md)
 
 ---
 
