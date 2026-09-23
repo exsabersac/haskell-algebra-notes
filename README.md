@@ -6,22 +6,25 @@
 
 ## 文档目录
 
-讨论已按主题拆成独立文档：
+按主题分目录存放（每个主题目录下还有本地 `README.md` 索引）：
 
-### 初始代数
+### [初始代数](docs/初始代数/)
 
-1. [初始代数的定义](docs/01-initial-algebra-definition.md)
-2. [初始代数与不动点](docs/02-initial-algebra-and-fixpoints.md)
-3. [初始代数与递归 ADT](docs/03-initial-algebra-and-recursive-adt.md)
-4. [初始代数、自由代数与 Monad](docs/04-initial-vs-free-vs-monad.md)
+1. [定义](docs/初始代数/定义.md)
+2. [与不动点](docs/初始代数/与不动点.md)
+3. [与递归 ADT](docs/初始代数/与递归ADT.md)
+4. [与自由代数和 Monad](docs/初始代数/与自由代数和Monad.md)
 
-### Free、fold 与函子组合
+### [Free](docs/Free/)
 
-5. [Free 中的生成元](docs/11-generators-in-free.md)
-6. [并排：`Fix` 与 `Free ExprF`](docs/12-fix-vs-free-expr.md)
-7. [`foldFree` 与 `cata` 的交换图对齐](docs/13-foldfree-and-cata.md)
-8. [编码：`Free ≅ Fix (Sum (Const a) f)`](docs/14-fix-sum-const-encoding.md)
-9. [常见函子组合](docs/15-functor-combinations.md)
+5. [生成元](docs/Free/生成元.md)
+6. [`Fix` 与 `Free` 对照](docs/Free/Fix与Free对照.md)
+7. [`foldFree` 与 `cata`](docs/Free/foldFree与cata.md)
+8. [`Free ≅ Fix` 编码](docs/Free/Fix编码.md)
+
+### [函子组合](docs/函子组合/)
+
+9. [常见组合](docs/函子组合/常见组合.md)
 
 ---
 
