@@ -9,7 +9,7 @@
 - 单位：单点集 \(1=\{*\}\)
 - \(\alpha,\lambda,\rho\)：标准的重新括号／丢掉 `*` 的双射
 
-这是对称幺半范畴。集合上的 monoid，恰是该幺半范畴里的 **monoid 对象**（见下）。由集合 \(X\) 生成的自由 monoid 就是列表 \([X]\)（见 [自由幺半群与列表](自由幺半群与列表.md)）。
+这是对称幺半范畴。集合上的 monoid，恰是该幺半范畴里的 **monoid 对象**（见下）。由集合 \(X\) 生成的自由 monoid 就是列表 \([X]\)（见 [自由幺半群与列表](自由幺半群与列表.md)）。列表 monad 的 EM 代数与 Monoid 等价见 [List的EM代数与Monoid](List的EM代数与Monoid.md)；FreeMon 与初始 ListF 的分界见 [自由幺半群与ListF代数](自由幺半群与ListF代数.md)。
 
 ## 2. \((\mathrm{End}(\mathcal{C}),\circ,\mathrm{Id})\)
 

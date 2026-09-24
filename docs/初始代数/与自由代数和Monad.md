@@ -120,3 +120,7 @@ X ↦ Free_F(X) 做成的 monad    →  Free F       （自由 monad）
 自由 monoid 与自由 monad 是同一「自由 monoid-对象」模式，分别落在 \((\mathbf{Set},\times,1)\) 与 \((\mathrm{End},\circ,\mathrm{Id})\)（不是某一个固定 \(\mathrm{Alg}(F)\) 的两次取值）。  
 详见 [自由函子与自由代数](../Free/自由函子与自由代数.md)。
 
+- [自由幺半群与列表](../幺半范畴/自由幺半群与列表.md) — \(\mathrm{FreeMon}(X)\cong[X]\)
+- [自由幺半群与ListF代数](../幺半范畴/自由幺半群与ListF代数.md) — FreeMon vs 初始 ListF；换 \(F\) 则拆开
+- [List的EM代数与Monoid](../幺半范畴/List的EM代数与Monoid.md) — \(\mathrm{EM}([])\simeq\mathbf{Mon}\)；自由 EM 载体 \([X]\)
+
