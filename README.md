@@ -39,6 +39,12 @@
 18. [List的EM代数与Monoid](docs/幺半范畴/List的EM代数与Monoid.md)
 19. [自由单子](docs/幺半范畴/自由单子.md)
 
+### [Kan扩展](docs/Kan扩展/)
+
+20. [定义与UP](docs/Kan扩展/定义与UP.md)
+21. [左伴随作为右Kan](docs/Kan扩展/左伴随作为右Kan.md)
+22. [余密度单子](docs/Kan扩展/余密度单子.md)
+
 ### 可运行演示代码
 
 手写 `Fix` / `Free` / `cata` / `foldFree`（仅依赖 `base`），按文档主题分模块：
