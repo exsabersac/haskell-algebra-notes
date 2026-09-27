@@ -45,6 +45,10 @@
 21. [左伴随作为右Kan](docs/Kan扩展/左伴随作为右Kan.md)
 22. [余密度单子](docs/Kan扩展/余密度单子.md)
 
+### [Optics By Example](docs/Optics-By-Example/)
+
+Chris Penner《Optics By Example》各章中文要点摘要（Lens / Fold / Traversal / Prism / Iso 等）。索引见 [docs/Optics-By-Example/README.md](docs/Optics-By-Example/README.md)；可运行 demo 仍在 [tambara-lens-demo](https://github.com/exsabersac/tambara-lens-demo)。
+
 ### 可运行演示代码
 
 手写 `Fix` / `Free` / `cata` / `foldFree`（仅依赖 `base`），按文档主题分模块：
