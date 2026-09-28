@@ -1,43 +1,84 @@
 # Lawvere 理论（CTFP 3.14）
 
 整理自 Milewski《Category Theory for Programmers》第 3.14 章 **Lawvere Theories**。  
-术语保留精确英文：Lawvere theory、FinSet、skeleton \(\mathbf{F}\)、\(\mathbf{F}^{\mathrm{op}}\)、model、Mod、finitary monad、coend、Kleisli。
+术语保留精确英文：Lawvere theory、FinSet、skeleton \(\mathbf{F}\)、\(\mathbf{F}^{\mathrm{op}}\)、model、\(\mathrm{Mod}\)、finitary monad、coend、Kleisli、EM algebra。
 
-风格：先范畴陈述，再短 Haskell；邻近概念用对照表。可运行草图见 [`src/Lawvere/Demo.hs`](../../src/Lawvere/Demo.hs)（`cabal run algebra-demos` 打印分节）。
+风格：**先范畴陈述，再短 Haskell**；邻近概念用对照表。机制写清楚，不用口号式类比顶替定义。  
+可运行草图：[`src/Lawvere/Demo.hs`](../../src/Lawvere/Demo.hs)（`cabal run algebra-demos` 打印分节横幅 `[1]`…`[6]`）。
+
+---
+
+## 学习路径（按 CTFP 章节顺序）
+
+```text
+① 定义与骨架     Universal Algebra → FinSet → F → F^op → I_L → L
+② 模型           product-preserving M : L → Set；Nat；平凡理论 ≃ Set
+③ 幺半群理论     L_Mon；L(2,1) ≃ 自由词；Mod ≃ Mon
+④ 与finitary-monad  free ⊣ forgetful；coend；Kleisli^op；Cont 边界
+⑤ 副作用与Maybe  单一 nullary raise ⇒ Maybe（CTFP Side Effects）
+⑥ 对照表         四层语言边界 + 何时用哪一副眼镜
+```
+
+建议读法：先走完 ①–③ 建立「理论 / 模型」分工，再读 ④ 看如何接到列表 monad；⑤ 是 finitary 的小品例子；⑥ 作复习地图。
+
+---
 
 ## 文档目录
 
-1. [定义与骨架](定义与骨架.md)（universal algebra；FinSet → \(\mathbf{F}\) → \(\mathbf{F}^{\mathrm{op}}\) → \(I_L\)；路线图）
-2. [模型](模型.md)（product-preserving \(M:L\to\mathbf{Set}\)；Nat；平凡理论 \(\simeq\mathbf{Set}\)）
-3. [幺半群理论](幺半群理论.md)（\(L_{\mathrm{Mon}}\)；自由 monoid 的 opposite；\(\mathrm{Mod}\simeq\mathbf{Mon}\)）
-4. [与finitary-monad](与finitary-monad.md)（自由–遗忘伴随；\(T a=\int^n a^n\times L(n,1)\)；Kleisli 重建；continuation 非 finitary；Maybe 小品）
-5. [对照表](对照表.md)（Lawvere / signature+equations / finitary monad / 任意 monad）
+| # | 文档 | CTFP 对应 | 内容 |
+|---|------|-----------|------|
+| 1 | [定义与骨架](定义与骨架.md) | Universal Algebra；Lawvere Theories | arity；FinSet→\(\mathbf{F}\)→\(\mathbf{F}^{\mathrm{op}}\)→\(I_L\)；boring vs interesting morphisms |
+| 2 | [模型](模型.md) | Models of Lawvere Theories | 保积模型；Nat；平凡理论 \(\simeq\mathbf{Set}\) |
+| 3 | [幺半群理论](幺半群理论.md) | The Theory of Monoids | \(L_{\mathrm{Mon}}\)；自由词作 \(L(2,1)\)；\(\mathrm{Mod}\simeq\mathbf{Mon}\) |
+| 4 | [与finitary-monad](与finitary-monad.md) | Lawvere Theories and Monads；Monads as Coends | free⊣forgetful；coend 公式拆解；Kleisli 重建；Cont 非 finitary |
+| 5 | [副作用与Maybe](副作用与Maybe.md) | Lawvere Theory of Side Effects | 单一 nullary \(0\to 1\)；\(Ta\cong a^0+a^1\cong\mathrm{Maybe}\,a\) |
+| 6 | [对照表](对照表.md) | （综览） | signature / Lawvere / finitary monad / 任意 monad；选用指南 |
 
-相关主题：[List的EM代数与Monoid](../幺半范畴/List的EM代数与Monoid.md)（\(\mathrm{EM}([])\simeq\mathbf{Mon}\)）；[自由幺半群与列表](../幺半范畴/自由幺半群与列表.md)；[余密度单子](../Kan扩展/余密度单子.md)（coend 公式语境）。
+相关主题：[List的EM代数与Monoid](../幺半范畴/List的EM代数与Monoid.md)（\(\mathrm{EM}([])\simeq\mathbf{Mon}\)）；[自由幺半群与列表](../幺半范畴/自由幺半群与列表.md)；[余密度单子](../Kan扩展/余密度单子.md)（coend 语境）。
 
-## 一句话路线
+---
+
+## 一句话总路线
 
 ```text
 FinSet ──skeleton──▶ F ──op──▶ F^op ──I_L──▶ L（Lawvere theory）
                                               │
-                                   product-preserving
+                                   product-preserving M
                                               ▼
                                          Mod(L, Set)  ≃  algebras
                                               │
-                                    free ⊣ forgetful
+                                    free F ⊣ forgetful U
                                               ▼
-                                    finitary monad T_L
+                                    finitary monad T_L = U∘F
+                                              │
+                         （逆：finitary T ──Kl^op|fin──▶ L）
 ```
 
-## Demo 分节（`Lawvere.Demo`）
+---
 
-与 CTFP / 上文笔记对照，stdout 横幅：
+## 文档 ↔ Demo ↔ CTFP 对照
 
-| 横幅 | 内容 | 主要对应 |
-|------|------|----------|
-| `-- [1] nullary/binary ops --` | `op0`/`op2`；在 `(Sum,0,+)`、`([a],++)`、`Endo` 上解释 | [幺半群理论](幺半群理论.md) §1 |
-| `-- [2] L(2,1) free-words --` | 枚举 ε,A,B,AA,… 作 \(2\to 1\) stand-in；投影/单位特例 | [幺半群理论](幺半群理论.md) §2 |
-| `-- [3] laws checks --` | 结合 / 左右单位，PASS/FAIL | [模型](模型.md) |
-| `-- [4] finitary monad List --` | `return`/`join`；`foldMap` 求值词 | [与finitary-monad](与finitary-monad.md) §1–2 |
-| `-- [5] Maybe Lawvere snack --` | nullary raise；`Maybe ≅ 1+a`；无 handler | [与finitary-monad](与finitary-monad.md) §4 |
-| `-- [6] theory morphism sketch --` | Monoid→Semigroup：忘掉单位 | [对照表](对照表.md) |
+`cabal run algebra-demos` 中 Lawvere 段的 stdout 横幅：
+
+| 横幅 | Demo 函数 / 符号 | 主要文档 | CTFP |
+|------|------------------|----------|------|
+| `-- [1] nullary/binary ops --` | `op0`、`op2`；在 `(Sum,0,+)`、`([a],++)`、`Endo` 上解释 | [幺半群理论](幺半群理论.md) §1；[定义与骨架](定义与骨架.md) | ops as morphisms |
+| `-- [2] L(2,1) free-words --` | `wordsUpTo`、`applyWord`；ε,A,B,AA,… | [幺半群理论](幺半群理论.md) §2 | \(L_{\mathrm{Mon}}(2,1)\) |
+| `-- [3] laws checks --` | `checkMonoidLaws` / `checkMonoidLawsReport` | [模型](模型.md) | equational laws in models |
+| `-- [4] finitary monad List --` | `return`/`join`；`foldMap` 求值词 | [与finitary-monad](与finitary-monad.md) | \(T_L\)；EM≃Mod |
+| `-- [5] Maybe Lawvere snack --` | `raise`、`embed`；`Maybe ≅ 1+a` | [副作用与Maybe](副作用与Maybe.md) | Side Effects |
+| `-- [6] theory morphism sketch --` | Monoid→Semigroup：忘掉单位 | [对照表](对照表.md)；[定义与骨架](定义与骨架.md) §态射 | morphisms in \(\mathbf{Law}\) |
+
+---
+
+## 术语速查
+
+| 英文 | 本文用法 |
+|------|----------|
+| arity | 运算元数；\(n\)-ary = \(a^n\to a\) |
+| skeleton \(\mathbf{F}\) | FinSet 同构类合并后的范畴；对象 ≅ \(\mathbb{N}\) |
+| basic product operations | 经 \(I_L\) 从 \(\mathbf{F}^{\mathrm{op}}\) 搬来的投影 / 对角等 |
+| interesting morphisms | 真正的代数运算（乘法、单位等） |
+| model | 保有限积（至同构）的 \(M:L\to\mathbf{Set}\) |
+| finitary | 函子／monad 由其在有限集上的行为经 coend 完全决定 |
+| Kleisli\(^{\mathrm{op}}\) | 从 finitary monad 重建 Lawvere theory 的路径 |

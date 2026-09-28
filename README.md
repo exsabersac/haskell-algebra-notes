@@ -47,13 +47,14 @@
 
 ### [Lawvere理论](docs/Lawvere理论/)
 
-整理自 CTFP 3.14 Lawvere Theories（FinSet / \(\mathbf{F}\) / \(I_L\) / models / \(L_{\mathrm{Mon}}\) / finitary monad）。
+整理自 CTFP 3.14 Lawvere Theories（FinSet / \(\mathbf{F}\) / \(I_L\) / models / \(L_{\mathrm{Mon}}\) / finitary monad / Maybe）。
 
 23. [定义与骨架](docs/Lawvere理论/定义与骨架.md)
 24. [模型](docs/Lawvere理论/模型.md)
 25. [幺半群理论](docs/Lawvere理论/幺半群理论.md)
 26. [与finitary-monad](docs/Lawvere理论/与finitary-monad.md)
-27. [对照表](docs/Lawvere理论/对照表.md)
+27. [副作用与Maybe](docs/Lawvere理论/副作用与Maybe.md)
+28. [对照表](docs/Lawvere理论/对照表.md)
 
 ### [Optics By Example](docs/Optics-By-Example/)
 
@@ -69,7 +70,7 @@ Chris Penner《Optics By Example》各章中文要点摘要（Lens / Fold / Trav
 | [`src/InitialAlgebra/Demo.hs`](src/InitialAlgebra/Demo.hs) | [初始代数](docs/初始代数/) | F-代数、`cata`、带 `Lit` 的 `ExprF`、Lambek in/out |
 | [`src/FreeDemo/Demo.hs`](src/FreeDemo/Demo.hs) | [Free](docs/Free/) · [自由单子](docs/幺半范畴/自由单子.md) | 生成元、`Free ≅ Fix (Sum (Const a) f)`、`foldFree = cata`、`Free ((,) e)` |
 | [`src/FunctorCombo/Demo.hs`](src/FunctorCombo/Demo.hs) | [函子组合](docs/函子组合/) · [自由幺半群与列表](docs/幺半范畴/自由幺半群与列表.md) · [自由幺半群与ListF代数](docs/幺半范畴/自由幺半群与ListF代数.md) | `ListF` / `NonEmptyF`、`Sum`/`Product`/`Const` 草图；`μ(ListF)≅[]` 亦见自由 monoid 笔记 |
-| [`src/Lawvere/Demo.hs`](src/Lawvere/Demo.hs) | [Lawvere理论](docs/Lawvere理论/) | monoid 运算/定律；自由 monoid 词 ≈ ops 2→1；List finitary 提示 |
+| [`src/Lawvere/Demo.hs`](src/Lawvere/Demo.hs) | [Lawvere理论](docs/Lawvere理论/) | ops/`Word2`/laws；List finitary；Maybe raise；理论态射草图 `[1]`–`[6]` |
 | [`app/Main.hs`](app/Main.hs) | — | `cabal run` 入口 |
 
 ```bash
