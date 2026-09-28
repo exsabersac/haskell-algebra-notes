@@ -21,9 +21,10 @@
 ⑤ 副作用与Maybe  单一 nullary raise ⇒ Maybe（CTFP Side Effects）
 ⑥ 对照表         四层语言边界 + 何时用哪一副眼镜
 ⑦ 多种finitary-monad  Identity / NE / Writer / Either / Reader / State（Cont 边界）
+⑧ 实现思路与finitary  signature → `L(n,1)` → `T a` → `return`/`join` → model eval；Writer；`L(3,2)`
 ```
 
-建议读法：想跟 CTFP 原文走 → 先读 [CTFP原文细讲](CTFP原文细讲.md)；想按主题跳读 → 走完 ①–③ 建立「理论 / 模型」分工，再读 ④ 接列表 monad，⑤ 是 Maybe 小品，⑥ 作复习地图，⑦ 扩一览更多 finitary 例子。
+建议读法：想跟 CTFP 原文走 → 先读 [CTFP原文细讲](CTFP原文细讲.md)；想按主题跳读 → 走完 ①–③ 建立「理论 / 模型」分工，再读 ④ 接列表 monad，⑤ 是 Maybe 小品，⑥ 作复习地图，⑦ 扩一览更多 finitary 例子，⑧ 把签名、monad、Writer 和 Kleisli 串成实现 pipeline。
 
 ---
 
@@ -39,6 +40,7 @@
 | 5 | [副作用与Maybe](副作用与Maybe.md) | Lawvere Theory of Side Effects | 单一 nullary \(0\to 1\)；\(Ta\cong a^0+a^1\cong\mathrm{Maybe}\,a\) |
 | 6 | [对照表](对照表.md) | （综览） | signature / Lawvere / finitary monad / 任意 monad；选用指南 |
 | 7 | [多种finitary-monad](多种finitary-monad.md) | （扩例子） | Identity / NE / Writer / Either / Reader / State；Cont 非 finitary |
+| 8 | [实现思路与finitary](实现思路与finitary.md) | （实现路线） | finitary 的边界；五步 pipeline；Writer 全流程；`L(3,2)` 与 List Kleisli |
 
 相关主题：[List的EM代数与Monoid](../幺半范畴/List的EM代数与Monoid.md)（\(\mathrm{EM}([])\simeq\mathbf{Mon}\)）；[自由幺半群与列表](../幺半范畴/自由幺半群与列表.md)；[余密度单子](../Kan扩展/余密度单子.md)（coend 语境）。
 

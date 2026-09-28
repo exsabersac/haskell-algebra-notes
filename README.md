@@ -57,6 +57,7 @@
 28. [副作用与Maybe](docs/Lawvere理论/副作用与Maybe.md)
 29. [对照表](docs/Lawvere理论/对照表.md)
 30. [多种finitary-monad](docs/Lawvere理论/多种finitary-monad.md)（Identity / NE / Writer / Either / Reader / State；Demo `[7]`–`[12]`）
+31. [实现思路与finitary](docs/Lawvere理论/实现思路与finitary.md)（五步 pipeline；Writer；`L(3,2)` 与 List Kleisli）
 
 ### [Optics By Example](docs/Optics-By-Example/)
 
