@@ -3,6 +3,7 @@ module Main where
 import qualified FreeDemo.Demo as Free
 import qualified FunctorCombo.Demo as Combo
 import qualified InitialAlgebra.Demo as Init
+import qualified Lawvere.Demo as Lawvere
 
 main :: IO ()
 main = do
@@ -14,3 +15,5 @@ main = do
   Free.demo
   putStrLn ""
   Combo.demo
+  putStrLn ""
+  Lawvere.demo

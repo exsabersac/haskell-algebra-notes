@@ -25,6 +25,7 @@ library
       InitialAlgebra.Demo
       FreeDemo.Demo
       FunctorCombo.Demo
+      Lawvere.Demo
 
 executable algebra-demos
   import:           shared
