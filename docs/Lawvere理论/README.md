@@ -4,10 +4,10 @@
 术语保留精确英文：Lawvere theory、FinSet、skeleton \(\mathbf{F}\)、\(\mathbf{F}^{\mathrm{op}}\)、model、\(\mathrm{Mod}\)、finitary monad、coend、Kleisli、EM algebra。
 
 风格：**先范畴陈述，再短 Haskell**；邻近概念用对照表。机制写清楚，不用口号式类比顶替定义。  
-可运行草图：[`src/Lawvere/Demo.hs`](../../src/Lawvere/Demo.hs)（`cabal run algebra-demos` 打印分节横幅 `[1]`…`[6]`）。
+可运行草图：[`src/Lawvere/Demo.hs`](../../src/Lawvere/Demo.hs)（`cabal run algebra-demos` 打印分节横幅 `[1]`…`[12]`）。
 
 > **按 CTFP 原文顺序的细讲**：[CTFP原文细讲](CTFP原文细讲.md)（§0 动机 → §1–§7 正文 → §8 Challenges → §9 Further Reading）。  
-> 与下方「通俗拆分」互补：细讲保留章节顺序与 coend/练习/文献；拆分按主题跳读，并链回 Demo `[1]`–`[6]`。
+> 与下方「通俗拆分」互补：细讲保留章节顺序与 coend/练习/文献；拆分按主题跳读，并链回 Demo `[1]`–`[12]`。
 
 ---
 
@@ -20,9 +20,10 @@
 ④ 与finitary-monad  free ⊣ forgetful；coend；Kleisli^op；Cont 边界
 ⑤ 副作用与Maybe  单一 nullary raise ⇒ Maybe（CTFP Side Effects）
 ⑥ 对照表         四层语言边界 + 何时用哪一副眼镜
+⑦ 多种finitary-monad  Identity / NE / Writer / Either / Reader / State（Cont 边界）
 ```
 
-建议读法：想跟 CTFP 原文走 → 先读 [CTFP原文细讲](CTFP原文细讲.md)；想按主题跳读 → 走完 ①–③ 建立「理论 / 模型」分工，再读 ④ 接列表 monad，⑤ 是 Maybe 小品，⑥ 作复习地图。
+建议读法：想跟 CTFP 原文走 → 先读 [CTFP原文细讲](CTFP原文细讲.md)；想按主题跳读 → 走完 ①–③ 建立「理论 / 模型」分工，再读 ④ 接列表 monad，⑤ 是 Maybe 小品，⑥ 作复习地图，⑦ 扩一览更多 finitary 例子。
 
 ---
 
@@ -37,6 +38,7 @@
 | 4 | [与finitary-monad](与finitary-monad.md) | Lawvere Theories and Monads；Monads as Coends | free⊣forgetful；coend 公式拆解；Kleisli 重建；Cont 非 finitary |
 | 5 | [副作用与Maybe](副作用与Maybe.md) | Lawvere Theory of Side Effects | 单一 nullary \(0\to 1\)；\(Ta\cong a^0+a^1\cong\mathrm{Maybe}\,a\) |
 | 6 | [对照表](对照表.md) | （综览） | signature / Lawvere / finitary monad / 任意 monad；选用指南 |
+| 7 | [多种finitary-monad](多种finitary-monad.md) | （扩例子） | Identity / NE / Writer / Either / Reader / State；Cont 非 finitary |
 
 相关主题：[List的EM代数与Monoid](../幺半范畴/List的EM代数与Monoid.md)（\(\mathrm{EM}([])\simeq\mathbf{Mon}\)）；[自由幺半群与列表](../幺半范畴/自由幺半群与列表.md)；[余密度单子](../Kan扩展/余密度单子.md)（coend 语境）。
 
@@ -72,6 +74,12 @@ FinSet ──skeleton──▶ F ──op──▶ F^op ──I_L──▶ L（L
 | `-- [4] finitary monad List --` | `return`/`join`；`foldMap` 求值词 | [与finitary-monad](与finitary-monad.md) | \(T_L\)；EM≃Mod |
 | `-- [5] Maybe Lawvere snack --` | `raise`、`embed`；`Maybe ≅ 1+a` | [副作用与Maybe](副作用与Maybe.md) | Side Effects |
 | `-- [6] theory morphism sketch --` | Monoid→Semigroup：忘掉单位 | [对照表](对照表.md)；[定义与骨架](定义与骨架.md) §态射 | morphisms in \(\mathbf{Law}\) |
+| `-- [7] Identity --` | `return`/`join` = `id`；\(L(n,1)\cong n\) | [多种finitary-monad](多种finitary-monad.md) §1 | trivial theory |
+| `-- [8] Semigroup / NonEmpty --` | `NE`；mul / join flatten | [多种finitary-monad](多种finitary-monad.md) §2 | free semigroup |
+| `-- [9] Writer --` | `(a,W)`；\(L(n,1)\cong n\times W\) | [多种finitary-monad](多种finitary-monad.md) §3 | Writer |
+| `-- [10] Either --` | \(\lvert E\rvert\) nullary raises | [多种finitary-monad](多种finitary-monad.md) §4 | multi-exception |
+| `-- [11] Reader --` | `env→a`；\(L(n,1)\cong n^{\lvert env\rvert}\) | [多种finitary-monad](多种finitary-monad.md) §5 | finite Reader |
+| `-- [12] State --` | `S→(a,S)`；\(\lvert L(n,1)\rvert=(n\lvert S\rvert)^{\lvert S\rvert}\) | [多种finitary-monad](多种finitary-monad.md) §6 | finite State |
 
 ---
 

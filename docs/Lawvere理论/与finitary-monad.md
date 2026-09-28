@@ -3,7 +3,7 @@
 Lawvere theory 与 monad 通过自由–遗忘伴随互译；**仅 finitary** monad 对应经典 Lawvere theory。  
 术语：forgetful \(U\)、free \(F\)、finitary functor、coend、Kleisli、continuation monad。
 
-相关：[模型](模型.md) · [幺半群理论](幺半群理论.md) · [副作用与Maybe](副作用与Maybe.md) · [对照表](对照表.md) · [List的EM代数与Monoid](../幺半范畴/List的EM代数与Monoid.md) · Demo `[4]`
+相关：[模型](模型.md) · [幺半群理论](幺半群理论.md) · [副作用与Maybe](副作用与Maybe.md) · [多种finitary-monad](多种finitary-monad.md) · [对照表](对照表.md) · [List的EM代数与Monoid](../幺半范畴/List的EM代数与Monoid.md) · Demo `[4]`、`[7]`–`[12]`
 更细的原文顺序见 [CTFP原文细讲](CTFP原文细讲.md)。
 
 ---
@@ -178,7 +178,8 @@ kleisliCompose f g = \x -> concatMap g (f x)
 
 Lawvere theories 可用 coproduct / tensor 组合（相对 monad transformer 往往更整齐）；与任意 monad 的互译止于 finitary。可扩展「超越 finitary」的 Lawvere 变体，CTFP 仅点到为止。
 
-Maybe 小品（单一 nullary raise）见专文 [副作用与Maybe](副作用与Maybe.md)。
+Maybe 小品（单一 nullary raise）见专文 [副作用与Maybe](副作用与Maybe.md)。  
+更多正面例子（Identity / NE / Writer / Either / Reader / State）与 Cont 边界重申见 [多种finitary-monad](多种finitary-monad.md)。
 
 ---
 

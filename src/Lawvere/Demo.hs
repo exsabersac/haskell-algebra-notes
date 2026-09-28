@@ -1,6 +1,7 @@
 -- | Lawvere theory 教育草图（仅 base）：
--- 运算作态射、L(2,1) 自由词、定律检查、List finitary monad、Maybe 小品、理论态射草图。
--- 对应 CTFP 3.14 / docs/Lawvere理论/（定义与骨架、幺半群理论、与finitary-monad）。
+-- 运算作态射、L(2,1) 自由词、定律检查、List/Maybe、理论态射，
+-- 以及 Identity / NE / Writer / Either / Reader / State 等 finitary 草图。
+-- 对应 CTFP 3.14 / docs/Lawvere理论/（定义与骨架、幺半群理论、与finitary-monad、多种finitary-monad）。
 module Lawvere.Demo
   ( Gen(..)
   , Word2
@@ -257,13 +258,234 @@ sectionTheoryMorph = do
   putStrLn ""
 
 ------------------------------------------------------------------------
+-- [7] Identity：平凡理论 F^op；L(n,1)≅n；T a ≅ a
+-- 对应：docs/Lawvere理论/多种finitary-monad.md §Identity
+------------------------------------------------------------------------
+
+sectionIdentity :: IO ()
+sectionIdentity = do
+  putStrLn "-- [7] Identity (trivial theory F^op) --"
+  putStrLn "  平凡理论 L = F^op：只有 basic product ops（投影），无 interesting morphisms。"
+  putStrLn "  L(n,1) ≅ n  （n 个投影 π_i : n → 1）；  T a = ∫^n a^n × L(n,1) ≅ a。"
+  putStrLn "  Kleisli：T n ≅ L(n,1) ≅ n。"
+  let retId :: a -> a
+      retId = id
+      joinId :: a -> a
+      joinId = id
+  putStrLn "  return = id ;  join = id"
+  putStrLn $ "  return 42        = " ++ show (retId (42 :: Int))
+  putStrLn $ "  join (return 7)  = " ++ show (joinId (retId (7 :: Int)))
+  putStrLn "  L(3,1) size ≅ 3  （投影 π₁,π₂,π₃）；T Int ≅ Int"
+  putStrLn ""
+
+------------------------------------------------------------------------
+-- [8] Semigroup / NonEmpty：仅 binary mul（assoc）；T a ≅ NE a
+-- 对应：docs/Lawvere理论/多种finitary-monad.md §Semigroup
+------------------------------------------------------------------------
+
+-- | 手写 nonempty：单点头 + 尾列表（≅ a × [a]）。
+data NE a = NE a [a]
+  deriving (Eq, Show)
+
+neSingleton :: a -> NE a
+neSingleton x = NE x []
+
+neToList' :: NE a -> [a]
+neToList' (NE x xs) = x : xs
+
+-- | 展平 nonempty-of-nonempty（semigroup join）。
+neJoin :: NE (NE a) -> NE a
+neJoin (NE (NE x xs) rest) = NE x (xs ++ concatMap neToList' rest)
+
+-- | 二元 mul：拼接两个 nonempty（assoc）。
+neMul :: NE a -> NE a -> NE a
+neMul (NE x xs) ys = NE x (xs ++ neToList' ys)
+
+sectionSemigroupNE :: IO ()
+sectionSemigroupNE = do
+  putStrLn "-- [8] Semigroup / NonEmpty --"
+  putStrLn "  理论：仅 binary mul μ:2→1 + 结合律（无 unit）。自由 semigroup ⇒ nonempty 列表。"
+  putStrLn "  L(n,1) ≅ 非空词 / 对 Fin n 的 nonempty 形状；T a ≅ NE a ≅ a × [a]。"
+  putStrLn "  return = singleton；join = flatten nonempty。"
+  let r = neSingleton 'x'
+      s = NE 'a' "bc"
+      t = NE 'd' "e"
+      nested = NE (NE 'p' "q") [NE 'r' [], NE 's' "t"]
+  putStrLn $ "  return 'x'              = " ++ show r
+  putStrLn $ "  mul (NE 'a' \"bc\") (NE 'd' \"e\") = " ++ show (neMul s t)
+  putStrLn $ "  join (NE (NE 'p' \"q\") [NE 'r' [], NE 's' \"t\"]) = " ++ show (neJoin nested)
+  putStrLn $ "  as list: " ++ show (neToList' (neJoin nested))
+  putStrLn "  hint: 比 List 少 unit ⇒ 无空列表；theory morph Semigroup→Monoid 见 [6]。"
+  putStrLn ""
+
+------------------------------------------------------------------------
+-- [9] Writer（固定 monoid W）：T a = (a, W)；L(n,1) ≅ n × W
+-- 对应：docs/Lawvere理论/多种finitary-monad.md §Writer
+------------------------------------------------------------------------
+
+type Writer w a = (a, w)
+
+writerReturn :: Monoid w => a -> Writer w a
+writerReturn x = (x, mempty)
+
+writerJoin :: Monoid w => Writer w (Writer w a) -> Writer w a
+writerJoin ((x, w1), w2) = (x, w1 <> w2)
+
+writerTell :: w -> Writer w ()
+writerTell w = ((), w)
+
+sectionWriter :: IO ()
+sectionWriter = do
+  putStrLn "-- [9] Writer (fixed monoid W) --"
+  putStrLn "  理论：在平凡骨干上，对每个 w∈W 加「写日志」族；L(n,1) ≅ n × W（挑变量 + 写日志）。"
+  putStrLn "  T a ≅ ∫^n a^n × (n×W) ≅ a × W；return x = (x, mempty)；join ((x,w1),w2)=(x,w1<>w2)。"
+  let wRet = writerReturn (10 :: Int) :: Writer (Sum Int) Int
+      layered :: Writer (Sum Int) (Writer (Sum Int) Int)
+      layered = ((42, Sum (5 :: Int)), Sum (7 :: Int))
+      toldThen :: Writer (Sum Int) Int
+      -- tell 3 再 return 20：手写为 join (return (return 20), Sum 3)
+      toldThen = writerJoin ((writerReturn (20 :: Int), Sum (3 :: Int)))
+      logLayered :: Writer [Char] (Writer [Char] String)
+      logLayered = (("hi", "log1"), "log2")
+  putStrLn $ "  [W=Sum Int]  return 10              = " ++ show wRet
+  putStrLn $ "  join ((42, Sum 5), Sum 7)           = " ++ show (writerJoin layered)
+  putStrLn $ "  tell (Sum 3) >> return 20           = " ++ show toldThen
+  putStrLn $ "  [W=[Char]]   return \"ok\"            = " ++ show (writerReturn "ok" :: Writer [Char] String)
+  putStrLn $ "  join ((\"hi\",\"log1\"),\"log2\")        = " ++ show (writerJoin logLayered)
+  putStrLn $ "  tell \"ping\" >> return 'a' 草图      = " ++ show (('a', "ping") :: Writer [Char] Char)
+  putStrLn $ "  (writerTell 见证类型) tell \"x\"       = " ++ show (writerTell "x" :: Writer [Char] ())
+  putStrLn ""
+
+------------------------------------------------------------------------
+-- [10] Either / multi-exception：|E| 个 nullary raise；T a ≅ E + a
+-- 对应：docs/Lawvere理论/多种finitary-monad.md §Either
+------------------------------------------------------------------------
+
+-- | 小枚举异常标签（|E|=3 个 nullary）。
+data Exc = Boom | Timeout | Denied
+  deriving (Eq, Show)
+
+raiseE :: Exc -> Either Exc a
+raiseE = Left
+
+embedE :: a -> Either Exc a
+embedE = Right
+
+eitherJoin :: Either e (Either e a) -> Either e a
+eitherJoin (Left e)          = Left e
+eitherJoin (Right (Left e))  = Left e
+eitherJoin (Right (Right x)) = Right x
+
+sectionEither :: IO ()
+sectionEither = do
+  putStrLn "-- [10] Either / multi-exception --"
+  putStrLn "  理论：|E| 个 nullary raise_e : 0→1（无 handler）。Maybe = |E|=1 特例。"
+  putStrLn "  L(0,1) ≅ E；T a ≅ ∫ a^n × L(n,1) ≅ E + a ≅ Either E a。"
+  putStrLn "  return = Right；join 传播 Left，否则拆内层。"
+  putStrLn $ "  raise Boom                 = " ++ show (raiseE Boom :: Either Exc Int)
+  putStrLn $ "  embed 99                   = " ++ show (embedE (99 :: Int))
+  putStrLn $ "  raise Timeout >> pure 1    = " ++ show (raiseE Timeout >> Right (1 :: Int))
+  putStrLn $ "  join (Right (Left Denied)) = " ++ show (eitherJoin (Right (Left Denied) :: Either Exc (Either Exc Int)))
+  putStrLn $ "  join (Right (Right 7))     = " ++ show (eitherJoin (Right (Right (7 :: Int)) :: Either Exc (Either Exc Int)))
+  putStrLn $ "  [E=String] Left \"oops\" / Right 'z' = "
+    ++ show (Left "oops" :: Either String Char) ++ " / "
+    ++ show (Right 'z' :: Either String Char)
+  putStrLn ""
+
+------------------------------------------------------------------------
+-- [11] Reader（有限 env=Bool）：T a = env → a；L(n,1) ≅ env → n
+-- 对应：docs/Lawvere理论/多种finitary-monad.md §Reader
+------------------------------------------------------------------------
+
+type Reader env a = env -> a
+
+readerReturn :: a -> Reader env a
+readerReturn = const
+
+-- | join f e = f e e  （标准 Reader：两层环境共用同一 e）
+readerJoin :: Reader env (Reader env a) -> Reader env a
+readerJoin f e = f e e
+
+sectionReader :: IO ()
+sectionReader = do
+  putStrLn "-- [11] Reader (finite env = Bool) --"
+  putStrLn "  理论：env 有限 ⇒ L(n,1) ≅ env → n ≅ n^{|env|}（每个环境挑一个投影槽）。"
+  putStrLn "  T a ≅ ∫ a^n × (env→n) ≅ (env → a)；return = const；join f e = f e e。"
+  putStrLn "  |L(n,1)| = n^2  （|env|=2）；例 n=2 ⇒ |L(2,1)|=4。"
+  let greet :: Reader Bool String
+      greet True  = "hello"
+      greet False = "bye"
+      ret5 = readerReturn (5 :: Int) :: Reader Bool Int
+      -- 两层：外层读 env 得内层 Reader
+      layered :: Reader Bool (Reader Bool Int)
+      layered e =
+        if e
+          then readerReturn 1
+          else (\e' -> if e' then 10 else 20)
+  putStrLn $ "  return 5 @True/@False   = " ++ show (ret5 True) ++ " / " ++ show (ret5 False)
+  putStrLn $ "  greet @True/@False      = " ++ show (greet True) ++ " / " ++ show (greet False)
+  putStrLn $ "  join layered @True      = " ++ show (readerJoin layered True)
+  putStrLn $ "  join layered @False     = " ++ show (readerJoin layered False)
+  putStrLn ""
+
+------------------------------------------------------------------------
+-- [12] State（有限 S=Bool）：T a = S → (a,S)；L(n,1)≅(n×S)^S
+-- 对应：docs/Lawvere理论/多种finitary-monad.md §State；Cont 非 finitary 注记
+------------------------------------------------------------------------
+
+type State s a = s -> (a, s)
+
+stateReturn :: a -> State s a
+stateReturn x s = (x, s)
+
+stateJoin :: State s (State s a) -> State s a
+stateJoin outer s0 =
+  let (inner, s1) = outer s0
+  in  inner s1
+
+stateGet :: State Bool Bool
+stateGet s = (s, s)
+
+statePut :: Bool -> State Bool ()
+statePut s' _ = ((), s')
+
+stateModify :: (Bool -> Bool) -> State Bool ()
+stateModify f s = ((), f s)
+
+sectionState :: IO ()
+sectionState = do
+  putStrLn "-- [12] State (finite S = Bool) --"
+  putStrLn "  理论：有限 S ⇒ L(n,1) ≅ (n×S)^S  （每个起始状态：挑输出槽 + 下一状态）。"
+  putStrLn "  |L(n,1)| = (n*|S|)^|S|；|S|=2 ⇒ |L(n,1)| = (2n)^2。"
+  putStrLn "  例 n=1：|L(1,1)| = 4；n=2：|L(2,1)| = 16。"
+  putStrLn "  T a ≅ S → (a,S)；return x s = (x,s)；join：先跑外层得 (inner,s1) 再跑 inner@s1。"
+  putStrLn $ "  return 9 @False           = " ++ show (stateReturn (9 :: Int) False)
+  let -- put True >> get >>= \b -> modify not >> return (if b then 1 else 0)
+      prog :: State Bool Int
+      prog = stateJoin $ \s0 ->
+        let (_, s1) = statePut True s0
+            inner s =
+              let (b, _) = stateGet s
+                  v = if b then 1 else 0
+                  (_, s') = stateModify not s
+              in (v, s')
+        in (inner, s1)
+  putStrLn "  tiny: put True >> (get >>= \\b -> modify not >> return (if b then 1 else 0))"
+  putStrLn $ "    @False → " ++ show (prog False)
+  putStrLn $ "    @True  → " ++ show (prog True)
+  putStrLn "  NOTE: Cont / continuation monad 不是 finitary（需任意高阶输入），无经典 Lawvere 对应。"
+  putStrLn "        见 docs/Lawvere理论/与finitary-monad.md §4；多种finitary-monad.md。"
+  putStrLn ""
+
+------------------------------------------------------------------------
 -- demo 入口
 ------------------------------------------------------------------------
 
 demo :: IO ()
 demo = do
   putStrLn "=== Lawvere (docs/Lawvere理论/ ; CTFP 3.14) ==="
-  putStrLn "sections: [1] ops  [2] L(2,1) words  [3] laws  [4] List monad  [5] Maybe  [6] theory morph"
+  putStrLn "sections: [1] ops  [2] L(2,1) words  [3] laws  [4] List  [5] Maybe  [6] theory morph"
+  putStrLn "          [7] Identity  [8] NE/Semigroup  [9] Writer  [10] Either  [11] Reader  [12] State"
   putStrLn ""
   sectionOps
   sectionWords
@@ -271,3 +493,9 @@ demo = do
   sectionListMonad
   sectionMaybe
   sectionTheoryMorph
+  sectionIdentity
+  sectionSemigroupNE
+  sectionWriter
+  sectionEither
+  sectionReader
+  sectionState
