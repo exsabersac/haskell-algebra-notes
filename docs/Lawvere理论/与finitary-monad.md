@@ -4,6 +4,7 @@ Lawvere theory 与 monad 通过自由–遗忘伴随互译；**仅 finitary** mo
 术语：forgetful \(U\)、free \(F\)、finitary functor、coend、Kleisli、continuation monad。
 
 相关：[模型](模型.md) · [幺半群理论](幺半群理论.md) · [副作用与Maybe](副作用与Maybe.md) · [对照表](对照表.md) · [List的EM代数与Monoid](../幺半范畴/List的EM代数与Monoid.md) · Demo `[4]`
+更细的原文顺序见 [CTFP原文细讲](CTFP原文细讲.md)。
 
 ---
 

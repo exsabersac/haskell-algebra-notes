@@ -49,12 +49,13 @@
 
 整理自 CTFP 3.14 Lawvere Theories（FinSet / \(\mathbf{F}\) / \(I_L\) / models / \(L_{\mathrm{Mon}}\) / finitary monad / Maybe）。
 
-23. [定义与骨架](docs/Lawvere理论/定义与骨架.md)
-24. [模型](docs/Lawvere理论/模型.md)
-25. [幺半群理论](docs/Lawvere理论/幺半群理论.md)
-26. [与finitary-monad](docs/Lawvere理论/与finitary-monad.md)
-27. [副作用与Maybe](docs/Lawvere理论/副作用与Maybe.md)
-28. [对照表](docs/Lawvere理论/对照表.md)
+23. [**CTFP原文细讲**](docs/Lawvere理论/CTFP原文细讲.md)（按原文顺序 §0–§9；链到拆分与 Demo `[1]`–`[6]`）
+24. [定义与骨架](docs/Lawvere理论/定义与骨架.md)
+25. [模型](docs/Lawvere理论/模型.md)
+26. [幺半群理论](docs/Lawvere理论/幺半群理论.md)
+27. [与finitary-monad](docs/Lawvere理论/与finitary-monad.md)
+28. [副作用与Maybe](docs/Lawvere理论/副作用与Maybe.md)
+29. [对照表](docs/Lawvere理论/对照表.md)
 
 ### [Optics By Example](docs/Optics-By-Example/)
 

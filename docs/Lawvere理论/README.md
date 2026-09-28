@@ -6,6 +6,9 @@
 风格：**先范畴陈述，再短 Haskell**；邻近概念用对照表。机制写清楚，不用口号式类比顶替定义。  
 可运行草图：[`src/Lawvere/Demo.hs`](../../src/Lawvere/Demo.hs)（`cabal run algebra-demos` 打印分节横幅 `[1]`…`[6]`）。
 
+> **按 CTFP 原文顺序的细讲**：[CTFP原文细讲](CTFP原文细讲.md)（§0 动机 → §1–§7 正文 → §8 Challenges → §9 Further Reading）。  
+> 与下方「通俗拆分」互补：细讲保留章节顺序与 coend/练习/文献；拆分按主题跳读，并链回 Demo `[1]`–`[6]`。
+
 ---
 
 ## 学习路径（按 CTFP 章节顺序）
@@ -19,7 +22,7 @@
 ⑥ 对照表         四层语言边界 + 何时用哪一副眼镜
 ```
 
-建议读法：先走完 ①–③ 建立「理论 / 模型」分工，再读 ④ 看如何接到列表 monad；⑤ 是 finitary 的小品例子；⑥ 作复习地图。
+建议读法：想跟 CTFP 原文走 → 先读 [CTFP原文细讲](CTFP原文细讲.md)；想按主题跳读 → 走完 ①–③ 建立「理论 / 模型」分工，再读 ④ 接列表 monad，⑤ 是 Maybe 小品，⑥ 作复习地图。
 
 ---
 
@@ -27,6 +30,7 @@
 
 | # | 文档 | CTFP 对应 | 内容 |
 |---|------|-----------|------|
+| 0 | [**CTFP原文细讲**](CTFP原文细讲.md) | **全章 §0–§9 原文顺序** | 动机；UA→定义→模型→Mon→monad/coend→Maybe；Challenges；Further Reading |
 | 1 | [定义与骨架](定义与骨架.md) | Universal Algebra；Lawvere Theories | arity；FinSet→\(\mathbf{F}\)→\(\mathbf{F}^{\mathrm{op}}\)→\(I_L\)；boring vs interesting morphisms |
 | 2 | [模型](模型.md) | Models of Lawvere Theories | 保积模型；Nat；平凡理论 \(\simeq\mathbf{Set}\) |
 | 3 | [幺半群理论](幺半群理论.md) | The Theory of Monoids | \(L_{\mathrm{Mon}}\)；自由词作 \(L(2,1)\)；\(\mathrm{Mod}\simeq\mathbf{Mon}\) |

@@ -4,6 +4,7 @@ CTFP 3.14「Lawvere Theory of Side Effects」：用**单一 nullary 运算**描�
 术语：nullary operation、raise、coend、\(a^0+a^1\)。
 
 相关：[与finitary-monad](与finitary-monad.md)（coend 公式）· [对照表](对照表.md) · Demo `[5]`
+更细的原文顺序见 [CTFP原文细讲](CTFP原文细讲.md)。
 
 ---
 
