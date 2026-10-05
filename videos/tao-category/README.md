@@ -14,12 +14,13 @@
 | 深讲 04 | 构造与折叠 | YouTube https://youtu.be/t9FMZVuRCxM （不公开） | 材料已入库 |
 | 深讲 05 | Functor | YouTube https://youtu.be/2t11eDI33T0 （不公开） | 材料已入库 |
 | 深讲 06 | Monad / do | YouTube https://youtu.be/YFuOdPQGx2g （不公开） | 材料已入库 |
+| 进阶深讲 07 | 道可道 | YouTube 上传后补链接 | 材料已入库 |
 
 目录：
 
 - [`beginner/`](beginner/) — 入门篇
 - [`advanced/`](advanced/) — 进阶篇
-- [`detail/`](detail/) — 深讲系列（逐题展开）；**入门深讲 01–06 材料已齐**
+- [`detail/`](detail/) — 深讲系列（逐题展开）；**入门深讲 01–06 材料已齐；进阶深讲 07 材料已入库**
 
 每集结构大致相同：`script.md`、`haskell/`、`manim/`、`final/youtube.md`、字幕 `.srt`、`thumbnail.png`、`final/preview-frames/`（若干 jpg）。
 
@@ -157,6 +158,23 @@
 07:20 结语：进阶篇
 ```
 
+
+### 进阶深讲 07 · 道可道（成片约 08:32）
+
+材料：[`detail/07-dao-sayable/`](detail/07-dao-sayable/) · YouTube 上传后补链接
+
+来源：[`detail/07-dao-sayable/final/youtube.md`](detail/07-dao-sayable/final/youtube.md)
+
+```
+00:00 开场：进阶深讲开篇
+00:58 一 道德经钩子
+02:09 二 对象不可道
+03:36 三 箭头可道
+05:07 四 自然性 / 米田一句
+06:29 五 短 Haskell
+07:45 结语：下集有无相生
+```
+
 ---
 
 ## 运行片中的 Haskell
@@ -187,6 +205,9 @@ cabal build && cabal run tao-category-functor
 
 cd videos/tao-category/detail/06-monad-do/haskell
 cabal build && cabal run tao-category-monad
+
+cd videos/tao-category/detail/07-dao-sayable/haskell
+cabal build && cabal run tao-category-dao-sayable
 ```
 
 屏幕代码用 `-- {{snip:NAME}}` … `-- {{/snip}}` 标记，由 `manim/common.py:load_snip` 抽取。GHC ≥ 9、`cabal`、`-Wall`。
