@@ -10,6 +10,7 @@
 | 进阶篇 | 道可道：用《道德经》读范畴论与 Haskell（Fix / 伴随 / 米田） | https://youtu.be/MHO5Go3j49A | — |
 | 深讲 01 | 类型与箭头 | https://youtu.be/7_gerVxtJ_8 （不公开） | 材料已入库 |
 | 深讲 02 | Void 与 () | YouTube https://youtu.be/ZnL-qV2bxTI （不公开） | 材料已入库 |
+| 深讲 03 | Maybe 与 List | YouTube 上传后补链接 | 材料已入库 |
 
 目录：
 
@@ -86,6 +87,22 @@
 07:23 结语：下集 Maybe / List
 ```
 
+### 深讲 03 · Maybe 与 List（成片约 07:50）
+
+材料：[`detail/03-maybe-list/`](detail/03-maybe-list/) · YouTube：上传后补链接
+
+来源：[`detail/03-maybe-list/final/youtube.md`](detail/03-maybe-list/final/youtube.md)
+
+```
+00:00 开场：深讲第三集
+00:49 一 道生一：构造子
+01:53 二 Maybe = 1 + A
+03:16 三 List：递归
+04:43 四 从无生长
+06:00 五 落到 Haskell
+07:13 结语：下集构造与折叠
+```
+
 ---
 
 ## 运行片中的 Haskell
@@ -104,6 +121,9 @@ cabal build && cabal run tao-category-types-arrows
 
 cd videos/tao-category/detail/02-void-unit/haskell
 cabal build && cabal run tao-category-void-unit
+
+cd videos/tao-category/detail/03-maybe-list/haskell
+cabal build && cabal run tao-category-maybe-list
 ```
 
 屏幕代码用 `-- {{snip:NAME}}` … `-- {{/snip}}` 标记，由 `manim/common.py:load_snip` 抽取。GHC ≥ 9、`cabal`、`-Wall`。
