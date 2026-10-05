@@ -1,0 +1,29 @@
+# Local toolchains / caches
+.venv/
+__pycache__/
+*.pyc
+.mypy_cache/
+.pytest_cache/
+
+# Build & media (not in this repo)
+build/
+audio/
+dist-newstyle/
+dist/
+*.hi
+*.o
+.cabal-sandbox/
+cabal.sandbox.config
+cabal.project.local
+cabal.project.local~
+
+# Large media
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.wav
+*.mp3
+*.flac
+*.aac
+*.m4a

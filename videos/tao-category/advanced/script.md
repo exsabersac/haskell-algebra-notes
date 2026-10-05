@@ -1,0 +1,411 @@
+# 道可道 · 范畴之道 —— 解说稿
+*用六句《道德经》重读范畴论与 Haskell｜The Dao of Categories*
+- 成片时长：**14:06**（846.4 秒），1920×1080，30 fps
+- 受众：已熟悉 Haskell、读过 CTFP / DaoFP（入门范畴论已知）。跳过基本定义，只给新视角。
+- 结构：每段 = 《道德经》原文 → 范畴论陈述 → 几行 Haskell。哲学只是钩子，数学必须正确。
+- 旁白：edge-tts `zh-CN-YunxiNeural`，语速 −6%。字幕：烧录 + `final/tao-category.srt`。
+- 屏幕上的全部代码都直接摘自 `haskell/src/*.hs`（以 `-- {{snip:…}}` 标记抽取），并经 GHC 9.14.1 `-Wall` 编译通过。
+
+## 主要参考与致谢
+本片的叙述框架与 Haskell 写法以 Bartosz Milewski 的两本书为主要参照（释义、改写，不做长段照录）：
+
+- **DaoFP** — *The Dao of Functional Programming*，<https://github.com/BartoszMilewski/DaoFP>
+- **CTFP** — *Category Theory for Programmers*（hmemcpy 编排版），<https://github.com/hmemcpy/milewski-ctfp-pdf>
+
+DaoFP 自身的“道”式框架被直接借用：第 1 章把老子首句改写为 *“The type that can be described is not the eternal type”*，并以“Yin and Yang”一节引入始/终对象；第 2 章称恒等箭头为 *wu wei*；第 3 章 *“Master Yoneda says: At the arrows look!”*；第 7 章《Recursion》以“道生一……”开篇；第 20 章以 Mac Lane 的 *“All concepts are Kan extensions”* 引入 Kan 扩张。
+
+| 段落 | DaoFP 章节 | CTFP 章节 |
+|---|---|---|
+| 一 道可道 | 1 Clean Slate（Types and Functions, Elements）；3 Isomorphism（Reasoning with Arrows） | 1.1, 1.2 |
+| 二 有无相生 | 1 Clean Slate（Yin and Yang, Elements） | 1.5 Products and Coproducts；1.6 Simple Algebraic Data Types |
+| 三 道生一 | 7 Recursion；11 Algebras（Initial algebra, Lambek's Lemma and Fixed Points, Catamorphisms, Initial Algebra as a Colimit） | 3.8 F-Algebras |
+| 四 反者道之动 | 12 Coalgebras（Anamorphisms, Infinite data structures, Hylomorphisms, The impedance mismatch） | 3.8 F-Algebras（Coalgebras） |
+| 五 知其雄 | 10 Adjunctions（The Currying Adjunction; Unit and Counit）；16 Monads and Adjunctions（currying adjunction and the state monad）；17 Comonads（Costate comonad; Lenses） | 3.2 Adjunctions；3.6 Monads Categorically；3.7 Comonads |
+| 六 无为 | 2 Composition（Identity）；9 Natural Transformations（The Yoneda Lemma; Yoneda lemma in programming）；20 Kan Extensions（Right Kan extension in Haskell） | 2.5 The Yoneda Lemma；2.6 Yoneda Embedding；3.11 Kan Extensions |
+
+与 Milewski 保持一致的写法：`newtype Fix f = Fix { unFix :: f (Fix f) }`、`type Algebra f a = f a -> a`、`cata alg = alg . fmap (cata alg) . unFix`、`ana coa = Fix . fmap (ana coa) . coa`、`hylo`；`unit = curry id` / `counit = uncurry id`；`data Store s c = St (s -> c) s`；`join mma = State (fmap (uncurry runState) (runState mma))`；`duplicate (St f s) = St (St f) s`；`Lens s a = s -> Store a s`；`newtype Ran g h a = Ran (forall b. (a -> g b) -> h b)`。
+
+## 术语表（全片统一）
+
+| 中文 | English |
+|---|---|
+| 对象 / 箭头（态射） | object / arrow (morphism) |
+| 始对象 / 终对象 | initial / terminal object |
+| 对偶范畴 Cᵒᵖ | opposite category |
+| 和（余积）/ 积 | sum (coproduct) / product |
+| 全局元素 | global element |
+| 函子 / 自然变换 / 自然性 | functor / natural transformation / naturality |
+| 代数 / 载体 / 结构映射 | algebra / carrier / structure map |
+| 初始代数 / 终余代数 | initial algebra / terminal coalgebra |
+| 不动点（最小 μF / 最大 νF） | fixed point (least / greatest) |
+| 兰贝克引理 | Lambek's lemma |
+| 余极限 / ω-链 | colimit / ω-chain |
+| 折叠 cata / 展开 ana / 合态射 hylo | catamorphism / anamorphism / hylomorphism |
+| 伴随 L ⊣ R / 单位 η / 余单位 ε | adjunction / unit / counit |
+| 柯里化伴随 | currying adjunction |
+| 单子 / 余单子 | monad / comonad |
+| Store（costate）余单子 | store (costate) comonad |
+| 余单子余代数 | comonad coalgebra |
+| 米田引理 / 米田嵌入（满忠实） | Yoneda lemma / Yoneda embedding (fully faithful) |
+| 续体传递风格 | continuation-passing style (CPS) |
+| 右 Kan 扩张 | right Kan extension |
+
+---
+
+## 道可道 · 范畴之道　`00:00–00:42`
+
+| 时间 | 旁白 | 画面 / 代码 |
+|---|---|---|
+| 00:00 | 道可道，非常道。这期视频，用六句《道德经》，重读范畴论里几件最核心的事。 | 宣纸背景，毛笔圆相（ensō）一笔画出；标题书法字浮现 |
+| 00:10 | 始对象与终对象，初始代数，代数与余代数的对偶，伴随，以及米田引理。每一段都是同样的节奏：先读原文，再给出范畴论的陈述，最后落到几行 Haskell。 | 六个章节名竖排列出，逐一淡入 |
+| 00:26 | 老子是钩子，数学是正文。框架上，我们会不断回到 Bartosz Milewski 的两本书：《程序员的范畴论》和《函数式编程之道》。 | 两本书名 CTFP / DaoFP 以小字出现；朱红印章「知白守黑」落下 |
+
+---
+
+## 一 · 道可道　`00:42–02:15`
+
+> **道可道，非常道；名可名，非常名。**　——《道德经》第一章
+
+参考：DaoFP ch.1 Clean Slate（Types and Functions / Elements）；DaoFP ch.3 Isomorphism（Reasoning with Arrows）；CTFP 1.1, 1.2
+
+| 时间 | 旁白 | 画面 / 代码 |
+|---|---|---|
+| 00:42 | 道可道，非常道；名可名，非常名。 | 竖排书法原文，右起 |
+| 00:50 | 第一句，先立一个论点：在范畴里，对象是不可言说的。 | 原文缩到右侧成一竖列；中央出现论点 |
+| 00:57 | Milewski 在《函数式编程之道》第一章就改写过这句话：能被描述的类型，不是恒常的类型。类型是原始概念，无法定义。 | 引文：The type that can be described is not the eternal type. —— DaoFP ch.1 |
+| 01:10 | 对象没有部分。你不能打开它，不能指着它说：看，这是我的元素。范畴的公理里，根本没有元素这个词。 | 中央一团淡墨晕染的对象 a，无标签内部 |
+| 01:22 | 能说出口的，只有箭头：射入它的箭头，从它射出的箭头，以及这些箭头怎样复合。对象的结构，是用箭头一下一下探测出来的。 | 箭头从四周射入、射出；一对箭头复合 |
+| 01:36 | Haskell 程序员对此并不陌生。一个不导出构造子的抽象类型，你对它的全部了解，就是那些以它为参数、或以它为结果的函数。 | 代码：module 只导出 Dao；birth / speak 两支箭头 |
+| 01:48 | 所以：可道者，箭头也；不可道者，对象也。屏幕上最后一行类型，收集了从 a 出发的所有说法。 | 高亮 type Speak a = forall x. (a -> x) -> x |
+| 02:00 | 但这个论点有个漏洞：如果对象不可言说，我们凭什么断定两个对象相同？先记住这个问题。视频的最后，米田引理会把这句话赎回来。 | 问号 a ≅ b ?；字幕「待第六段米田引理赎回」 |
+
+屏幕代码 `s1`（`haskell/src/Seg1Dao.hs`）：
+
+```haskell
+-- 不可道：构造子不导出，外界看不见内部
+newtype Dao = Dao Integer
+
+birth :: Integer -> Dao        -- 射入 Dao 的箭头
+birth = Dao
+
+speak :: Dao -> String         -- 射出 Dao 的箭头
+speak (Dao n) = "道" ++ show n
+
+-- 可道者：从 a 出发的一切说法
+type Speak a = forall x. (a -> x) -> x
+```
+
+---
+
+## 二 · 有无相生　`02:15–04:13`
+
+> **有无相生，难易相成，长短相形，高下相倾。**　——《道德经》第二章
+
+参考：DaoFP ch.1 Clean Slate（Yin and Yang / Elements）；CTFP 1.5 Products and Coproducts；CTFP 1.6 Simple Algebraic Data Types
+
+| 时间 | 旁白 | 画面 / 代码 |
+|---|---|---|
+| 02:16 | 有无相生，难易相成，长短相形，高下相倾。 | 竖排原文 |
+| 02:24 | 老子说，有和无互相生成。范畴里恰好有一对对象，是彼此的镜像：始对象与终对象。《函数式编程之道》把这一节就叫作阴与阳。 | 左「无 Void」右「有 ()」两点，中间一条竖直镜面虚线 |
+| 02:39 | 始对象，到每个对象都恰有一支箭头。在 Haskell 里，它是没有任何值的 Void，万物所从出的混沌。absurd 从 Void 通往任何类型——它存在且唯一，正因为无可定义：没有输入，就无需说任何话。 | Void 向 A、B、C 发出箭头（absurd） |
+| 02:58 | 终对象，每个对象到它都恰有一支箭头，也就是单元类型。const 单元，把万物归于同一个点。 | A、B、C 汇入 ()（const ()） |
+| 03:08 | 两个定义，字面上一模一样，只是箭头方向相反。范畴 C 里的始对象，就是对偶范畴 C op 里的终对象。无，是倒过来看的有。 | 左图沿镜面翻转、箭头反向，与右图重合 |
+| 03:23 | 它们还各自守着一种运算：Void 是和，也就是 Either 的单位；单元类型是积，也就是元组的单位。和与积，又是一对镜像。 | 代码：wu / you，sumUnit / prodUnit |
+| 03:35 | 有，还是探针。从单元类型射向 a 的每一支箭头，都挑出 a 的一个元素。而没有任何箭头从有射向无，所以 Void 没有元素。 | 高亮 element；() -> a 箭头挑出点 |
+| 03:50 | 反过来，一个以 Void 为终点的函数，等于宣告它的定义域是空的。这正是构造逻辑里的否定。 | 高亮 type Not a = a -> Void |
+| 04:00 | 把箭头整体翻转，几乎每个构造都会得到它的孪生兄弟。这个动作，老子另有一句话：反者道之动。第四段再见。 | 小字预告：反者道之动 → |
+
+屏幕代码 `s2wu`（`haskell/src/Seg2YouWu.hs`）：
+
+```haskell
+wu :: Void -> a
+wu = absurd
+```
+
+屏幕代码 `s2you`（`haskell/src/Seg2YouWu.hs`）：
+
+```haskell
+you :: a -> ()
+you = const ()
+```
+
+屏幕代码 `s2b`（`haskell/src/Seg2YouWu.hs`）：
+
+```haskell
+-- 无是和的单位
+sumUnit :: Either Void a -> a
+sumUnit = either absurd id
+
+-- 有是积的单位
+prodUnit :: ((), a) -> a
+prodUnit = snd
+```
+
+屏幕代码 `s2c`（`haskell/src/Seg2YouWu.hs`）：
+
+```haskell
+-- 有是探针：() -> a 即元素
+element :: a -> (() -> a)
+element = const
+
+-- 通往无的箭头即否定
+type Not a = a -> Void
+```
+
+---
+
+## 三 · 道生一　`04:13–06:52`
+
+> **道生一，一生二，二生三，三生万物。**　——《道德经》第四十二章
+
+参考：DaoFP ch.7 Recursion（以此句开篇）；DaoFP ch.11 Algebras（Initial algebra, Lambek's Lemma and Fixed Points, Catamorphisms, Initial Algebra as a Colimit）；CTFP 3.8 F-Algebras
+
+| 时间 | 旁白 | 画面 / 代码 |
+|---|---|---|
+| 04:14 | 道生一，一生二，二生三，三生万物。 | 竖排原文 |
+| 04:21 | 《函数式编程之道》讲递归的那一章，正是以这句话开篇的。其实它可以读得更精确，读成一个定理。 | 小字：DaoFP ch.7 Recursion |
+| 04:32 | 设想一个函子 f，描述生成的一步：给我一批旧的东西，我造出一批新的东西。取 f 为 Maybe。 | f = Maybe：a ↦ 1 + a |
+| 04:42 | 从无开始，也就是 Void。Maybe Void 只有一个值，Nothing：这是一。再作用一次，有两个值：这是二。再一次，三个值：这是三。 | 链：Void → f Void → f² Void → f³ Void（f = Maybe，箭头 !、f !、f² !）；下方点数 0 1 2 3 与书法「无 一 二 三」 |
+| 04:57 | 沿着这条链一直走下去，取它的余极限，得到的就是自然数。这是 Adámek 定理：只要 f 保持这类余极限，从始对象出发反复作用 f，所得的余极限就是 f 的初始代数。三生万物；而第四十章补了一句：有生于无。 | 链延伸到 ⋯ → Nat（万物，虚线框）；「余极限 = 初始代数（Adámek 定理）」；书法「天下万物生于有 有生于无」 |
+| 05:20 | 在 Haskell 里，我们直接写出这个不动点：Fix f。构造子 Fix，把一层 f 包裹的 Fix f，收成一个 Fix f；unFix 把它拆开。 | 代码：newtype Fix f = Fix { unFix :: f (Fix f) } |
+| 05:34 | 兰贝克引理说，初始代数的结构映射一定是同构：Fix f 与 f 作用在 Fix f 上，是同一个东西。 | 图：f (Fix f) ⇄ Fix f，Fix / unFix |
+| 05:43 | 证明只用一个技巧：f 作用在 Fix f 上，本身也是一个代数。由初始性，得到一支回来的箭头；再由唯一性，两边的复合只能是恒等。 | 同一图上淡入两次复合 = id |
+| 05:57 | 道是它自己的不动点。《道德经》说，道法自然。自然二字，本义正是：自己如此。 | 书法小字：道法自然 = 自己如此 |
+| 06:08 | 初始性还给了我们另一样东西：对任何代数，也就是任何一种把 f a 收回 a 的方式，从 Fix f 出发都有且只有一条同态。这就是 cata，折叠。 | cata 交换方块；cata alg 为虚线（∃!） |
+| 06:23 | 它是唯一的归途。夫物芸芸，各复归其根。你可以选择归向哪里，也就是选择代数；但一旦选定，路只有一条。 | 高亮 cata 定义 |
+| 06:35 | 自然数和列表，都这样从无中生出：Maybe 的不动点是自然数，ListF 的不动点是列表。把自然数折成 Int，只需说清一步：零变成 0，后继变成加一。 | 代码：Nat / toInt，ListF / total |
+
+屏幕代码 `s3a`（`haskell/src/Seg3Fix.hs`）：
+
+```haskell
+newtype Fix f = Fix { unFix :: f (Fix f) }
+-- 兰贝克引理：Fix 与 unFix 互逆，Fix f ≅ f (Fix f)
+
+type Algebra f a = f a -> a
+
+cata :: Functor f => Algebra f a -> Fix f -> a
+cata alg = alg . fmap (cata alg) . unFix
+```
+
+屏幕代码 `s3b`（`haskell/src/Seg3Fix.hs`）：
+
+```haskell
+type Nat = Fix Maybe   -- 道生一……
+
+zero :: Nat
+zero = Fix Nothing
+
+suc :: Nat -> Nat
+suc n = Fix (Just n)
+
+-- 唯一的归途
+toInt :: Nat -> Int
+toInt = cata (maybe 0 (+ 1))
+```
+
+屏幕代码 `s3c`（`haskell/src/Seg3Fix.hs`）：
+
+```haskell
+-- 列表：ListF 的不动点
+data ListF e r = NilF | ConsF e r
+  deriving Functor
+
+type List e = Fix (ListF e)
+
+total :: List Int -> Int
+total = cata alg where
+  alg NilF        = 0
+  alg (ConsF e r) = e + r
+```
+
+---
+
+## 四 · 反者道之动　`06:52–09:20`
+
+> **反者道之动，弱者道之用。**　——《道德经》第四十章
+
+参考：DaoFP ch.12 Coalgebras（Anamorphisms, Hylomorphisms, The impedance mismatch）；DaoFP ch.11 Algebras；CTFP 3.8 F-Algebras（Coalgebras）
+
+| 时间 | 旁白 | 画面 / 代码 |
+|---|---|---|
+| 06:52 | 反者道之动，弱者道之用。 | 竖排原文 |
+| 06:58 | 现在，把第三段的每一支箭头都反过来。 | cata 方块重新出现 |
+| 07:03 | 代数是从 f a 到 a 的箭头：收拢一层结构。反过来，余代数是从 a 到 f a 的箭头：从一颗种子里，长出一层结构。Milewski 的说法很干脆：cata 用来砍树，ana 用来种树。 | f a → a 与 a → f a 上下对照 |
+| 07:22 | 初始代数反过来，是终余代数。cata 反过来，是 ana，展开：对任何余代数，都有唯一一条同态，通往终余代数。 | 左：cata 方块；右：ana 方块 |
+| 07:36 | 图也一样：把 cata 那张交换图的箭头全部翻转，就是 ana 的交换图。代码也一样：把复合的顺序倒过来，unFix 换成 Fix，就是 ana。 | 箭头逐一翻转动画；代码 cata / ana 对照高亮 |
+| 07:52 | 这里藏着第二段的回声：初始代数从始对象，也就是无，一层层生长出来；终余代数则从终对象，也就是有，一层层逼近。有无相生，又出现了一次。 | 0 → F0 → F²0 → …  与  1 ← F1 ← F²1 ← … |
+| 08:08 | 在集合里，最小不动点与最大不动点并不相同。但在 Haskell 里，因为惰性，同一个 Fix 既能折叠有限的结构，也能展开无限的流。 | μF ⊂ νF（Set）；Haskell：Fix 兼任二者 |
+| 08:21 | 有了生，有了归，就可以把它们接起来：先用 ana 展开，再用 cata 折叠。这就是 hylo，合态射。先生，而后归。 | a ─ana→ (Fix f) ─cata→ b；中间节点淡墨 |
+| 08:38 | 比如阶乘：从 n 展开出 n、n 减一，一直到一；再把这条链乘起来。 | 代码：hylo / fact 高亮 |
+| 08:46 | 妙处在于，hylo 的定义里没有不动点的影子：中间那个结构被生出，又在构造的同时被消费，从未完整存在于内存中。老子有一句话恰好描述这种融合：生而不有。 | 中间 Fix f 节点渐隐；书法小字「生而不有」 |
+| 09:03 | 代价是：如果展开永不终止，hylo 也会永远算下去。反者道之动——对偶不是修辞，而是生产力：每证明一个定理，翻转箭头，就白得另一个。 | 小字：定理 ⟷ 对偶定理 |
+
+屏幕代码 `s4a`（`haskell/src/Seg4Hylo.hs`）：
+
+```haskell
+type Coalgebra f a = a -> f a
+
+-- cata alg = alg . fmap (cata alg) . unFix
+ana :: Functor f => Coalgebra f a -> a -> Fix f
+ana coa = Fix . fmap (ana coa) . coa
+```
+
+屏幕代码 `s4b`（`haskell/src/Seg4Hylo.hs`）：
+
+```haskell
+hylo :: Functor f => Algebra f b -> Coalgebra f a -> a -> b
+hylo alg coa = alg . fmap (hylo alg coa) . coa
+
+-- 先生：n, n-1, …, 1；后归：乘起来
+fact :: Integer -> Integer
+fact = hylo alg coa where
+  coa 0 = NilF
+  coa n = ConsF n (n - 1)
+  alg NilF        = 1
+  alg (ConsF n r) = n * r
+```
+
+另：屏幕上 `nats = ana (\n -> StreamF n (n + 1)) 0` 摘自 `Seg4Hylo.hs`（惰性下同一个 `Fix` 承载无限流）。
+
+---
+
+## 五 · 知其雄，守其雌　`09:20–11:20`
+
+> **知其雄，守其雌，为天下溪。**　——《道德经》第二十八章
+
+参考：DaoFP ch.10 Adjunctions（The Currying Adjunction; Unit and Counit）；DaoFP ch.16 Monads and Adjunctions（The currying adjunction and the state monad）；DaoFP ch.17 Comonads（Costate comonad; Lenses）；CTFP 3.2 Adjunctions, 3.6 Monads Categorically, 3.7 Comonads
+
+| 时间 | 旁白 | 画面 / 代码 |
+|---|---|---|
+| 09:20 | 知其雄，守其雌，为天下溪。 | 竖排原文 |
+| 09:27 | 伴随，大概是范畴论里最常见、也最容易被低估的结构。左伴随 L 与右伴随 R 之间，有一个自然同构：从 L a 到 b 的箭头，与从 a 到 R b 的箭头，一一对应。 | C(L a, b) ≅ D(a, R b)；L ⊣ R |
+| 09:43 | 最朴素的例子，就在每个 Haskell 程序员手边：与 s 配对，左伴随于从 s 出发的函数。这就是柯里化伴随，同构的两个方向，正是 curry 与 uncurry。 | ((a, s) -> b) ≅ (a -> s -> b)；(,) s ⊣ (->) s |
+| 09:58 | 伴随的单位，是 curry 作用在恒等上；余单位，是 uncurry 作用在恒等上，也就是函数求值。 | 代码：unit = curry id；counit = uncurry id |
+| 10:08 | 先走 L 再走 R，得到从 s 到 a 与 s 之配对的函数：这正是 State 单子，单位就是它的 return。 | R ∘ L = s -> (a, s) = State |
+| 10:18 | 反过来，先走 R 再走 L，得到一个从 s 出发的函数，配上一个 s：这是 Store 余单子，余单位就是它的 extract，把函数作用在手里的位置上。 | L ∘ R = (s -> c, s) = Store |
+| 10:31 | 单子的 join，是在中间夹入余单位；余单子的 duplicate，是在中间夹入单位。同一对箭头，喂养了两种结构。 | 代码：join = R ε L；duplicate = L η R |
+| 10:42 | State 是雄：主动、向外，产生效果，改写状态。Store 是雌：接纳、向内，守着一个焦点，和一种查看全局的方式。 | 左「雄 · State · 效果」右「雌 · Store · 语境」 |
+| 10:55 | 知其雄，守其雌，为天下溪。单子与余单子不是两套理论，而是同一条溪流的两岸。那条溪，就是伴随本身。 | 两栏之间一道墨线（溪）标注 L ⊣ R |
+| 11:09 | 顺带一提：一个合法的 lens，恰好是 Store 余单子的余代数。第四段的余代数，在这里又出现了。 | 代码：type Lens s a = s -> Store a s |
+
+屏幕代码 `s5a`（`haskell/src/Seg5Adjunction.hs`）：
+
+```haskell
+-- 柯里化伴随：((a, s) -> b)  ≅  (a -> (s -> b))
+leftAdjunct :: ((a, s) -> b) -> a -> (s -> b)
+leftAdjunct = curry
+
+rightAdjunct :: (a -> (s -> b)) -> (a, s) -> b
+rightAdjunct = uncurry
+
+unit :: a -> (s -> (a, s))        -- η：State 的 return
+unit = curry id
+
+counit :: (s -> b, s) -> b        -- ε：Store 的 extract
+counit = uncurry id
+```
+
+屏幕代码 `s5b`（`haskell/src/Seg5Adjunction.hs`）：
+
+```haskell
+-- R ∘ L：State 单子；join = R ε L
+newtype State s a = State { runState :: s -> (a, s) }
+
+join :: State s (State s a) -> State s a
+join mma = State (fmap (uncurry runState) (runState mma))
+```
+
+屏幕代码 `s5c`（`haskell/src/Seg5Adjunction.hs`）：
+
+```haskell
+-- L ∘ R：Store 余单子；duplicate = L η R
+data Store s c = St (s -> c) s
+
+extract :: Store s c -> c
+extract (St f s) = f s
+
+duplicate :: Store s c -> Store s (Store s c)
+duplicate (St f s) = St (St f) s
+```
+
+屏幕代码 `s5d`（`haskell/src/Seg5Adjunction.hs`）：
+
+```haskell
+-- 合法的 lens 恰是 Store 余单子的余代数
+type Lens s a = s -> Store a s
+
+_1 :: Lens (a, b) a
+_1 (a, b) = St (\a' -> (a', b)) a
+```
+
+---
+
+## 六 · 无为而无不为　`11:20–13:44`
+
+> **道常无为而无不为。**　——《道德经》第三十七章
+
+参考：DaoFP ch.2 Composition（Identity = wu wei）；DaoFP ch.9 Natural Transformations（The Yoneda Lemma; Yoneda lemma in programming）；DaoFP ch.20 Kan Extensions（Right Kan extension in Haskell）；CTFP 2.5 The Yoneda Lemma, 2.6 Yoneda Embedding, 3.11 Kan Extensions
+
+| 时间 | 旁白 | 画面 / 代码 |
+|---|---|---|
+| 11:20 | 道常无为而无不为。 | 竖排原文 |
+| 11:25 | 最后一句。看这个类型：对一切 x，给定从 a 到 x 的箭头，就产出一个 f x。米田引理说，这样的东西，与一个 f a 同构。 | 大字：(forall x. (a -> x) -> f x) ≅ f a |
+| 11:39 | 为什么？因为它对 x 一无所知。它不能检查 x，不能凭空造出 x，唯一能做的，就是把你给的箭头原样用上。这是无为。 | x 被灰色遮罩 |
+| 11:53 | 可正因如此，它被完全确定了。《函数式编程之道》第二章把恒等箭头称为无为：什么也不改变，也不花时间。米田的证明，只从一支恒等箭头出发，让自然性把它传遍整个范畴。 | 一支 id 自环，墨迹沿箭头扩散到整张网 |
+| 12:12 | 喂给它 id，就得到一个 f a；反过来，有了 f a，用 fmap 就能应对任何箭头。这是无不为。 | 代码：toYoneda / fromYoneda 高亮 |
+| 12:23 | 工程上这也有用：把一个函子包进 Yoneda，一连串 fmap 只是攒成函数复合，什么也不做，直到最后一刻才一次完成。无为，也是一种优化。 | fmap h . fmap g ⇒ 一次 fmap (h . g) |
+| 12:37 | 现在回到第一句。取 f 为恒等函子：对一切 x，能把从 a 到 x 的箭头变成 x 的东西，同构于 a 本身。这也正是续体传递风格的由来。 | 代码：redeem :: Speak a -> a；回看第一段的 Speak |
+| 12:52 | 也就是说，任何一支单独的箭头，都说不出对象：道可道，非常道。但从 a 出发的全部箭头，连同它们之间协调一致的方式，就完整地决定了 a——在同构的意义下。而在范畴论里，同构就是相同的全部含义。 | 第一段的墨团 a 与放射箭头重现；箭头合拢，墨团显出名字 |
+| 13:13 | 米田嵌入是满忠实的：两个对象同构，当且仅当它们的全部说法自然同构。不可道的对象，被可道的箭头之全体赎回了。 | a ≅ b ⟺ C(a, −) ≅ C(b, −) |
+| 13:25 | 最后一句题外话：米田本身是 Kan 扩张的特例，沿恒等函子的右 Kan 扩张，还原 f 自身。Mac Lane 说，所有概念都是 Kan 扩张：极限是，伴随是，米田也是。 | 代码：Ran；小字 All concepts are Kan extensions —— Mac Lane |
+
+屏幕代码 `s6a`（`haskell/src/Seg6Yoneda.hs`）：
+
+```haskell
+newtype Yoneda f a = Yoneda (forall x. (a -> x) -> f x)
+
+toYoneda :: Functor f => f a -> Yoneda f a
+toYoneda fa = Yoneda (\h -> fmap h fa)    -- 无不为
+
+fromYoneda :: Yoneda f a -> f a
+fromYoneda (Yoneda g) = g id              -- 无为：只给它 id
+```
+
+屏幕代码 `s6b`（`haskell/src/Seg6Yoneda.hs`）：
+
+```haskell
+-- 回到第一句：f = Identity
+-- (forall x. (a -> x) -> x)  ≅  a
+redeem :: Speak a -> a
+redeem s = s id
+
+-- 所有概念都是 Kan 扩张：Yoneda f ≅ Ran Identity f
+newtype Ran g h a = Ran (forall b. (a -> g b) -> h b)
+```
+
+另：屏幕上 `fmap h (Yoneda g) = Yoneda (\k -> g (k . h))` 为 `Seg6Yoneda.hs` 中 `Functor (Yoneda f)` 实例；`Ran` 与 `Yoneda f ≅ Ran Identity f` 的双向转换 `yonedaToRan` / `ranToYoneda` 亦在该文件中。
+
+---
+
+## 结 · 看箭头　`13:44–14:06`
+
+| 时间 | 旁白 | 画面 / 代码 |
+|---|---|---|
+| 13:45 | 从无与有，到生与归；从雄与雌，到无为。六句话，其实只说了一件事。 | 六句原文小字环绕圆相 |
+| 13:54 | 借 Milewski 书里米田大师的一句话：看箭头。道可道，非常道。谢谢观看。 | 「看箭头」书法大字；印章；谢谢观看 |
+
+---
+
+## 数学校对备注
+
+- 依 CTFP 惯例在 Hask 中忽略 ⊥（`Void` 作为始对象、`a -> Void` 作为否定都在此约定下成立）。
+- 第三段：Adámek 定理要求 f 保持 ω-链余极限（多项式函子如 `Maybe`、`ListF e` 满足）；`Maybeⁿ Void` 恰有 n 个值，故“无、一、二、三”是精确的计数。
+- 第四段：在 Set 中 μF ⊊ νF（例如恒等函子：∅ 与单点集）；Haskell 因惰性用同一个 `Fix f` 承载二者，代价是 hylo 在展开不终止时发散（DaoFP 12 “impedance mismatch”）。
+- 第五段：State = R∘L，Store = L∘R，`join = R ε L`，`duplicate = L η R`；合法 lens 恰为 Store 余单子的余代数（DaoFP 17）。
+- 第六段：`forall x. (a -> x) -> f x ≅ f a` 是 Hask 中（参数性下）的米田引理；f = Identity 给出 `a ≅ forall x. (a -> x) -> x`（CPS）；米田嵌入满忠实 ⇒ a ≅ b ⟺ C(a,−) ≅ C(b,−)；`Yoneda f ≅ Ran Identity f`。
+
+## 制作说明
+
+- 画面：Manim Community 0.21（Cairo），白底渲染后与程序生成的宣纸纹理做 multiply 合成；唯一红色为印章「知白守黑」（第二十八章）。
+- 字体：原文书法 Ma Shan Zheng（OFL）；正文/字幕 霞鹜文楷 LXGW WenKai（OFL）；代码 IBM Plex Mono（OFL）；英文引文 EB Garamond（OFL）。
+- 构建：`manim/tts.py` → `manim/scenes.py`（每拍时间写入 `build/timings`）→ `manim/assemble.py`（按实际帧时刻放置音频、生成字幕）→ ffmpeg 合成。

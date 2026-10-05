@@ -59,6 +59,8 @@
 30. [多种finitary-monad](docs/Lawvere理论/多种finitary-monad.md)（Identity / NE / Writer / Either / Reader / State；Demo `[7]`–`[12]`）
 31. [实现思路与finitary](docs/Lawvere理论/实现思路与finitary.md)（五步 pipeline；Writer；`L(3,2)` 与 List Kleisli）
 
+### [视频：道可道（道德经 × 范畴论 × Haskell，入门篇 + 进阶篇）](videos/tao-category/)
+
 ### [Optics By Example](docs/Optics-By-Example/)
 
 Chris Penner《Optics By Example》各章中文要点摘要（Lens / Fold / Traversal / Prism / Iso 等）。索引见 [docs/Optics-By-Example/README.md](docs/Optics-By-Example/README.md)；可运行 demo 仍在 [tambara-lens-demo](https://github.com/exsabersac/tambara-lens-demo)。
