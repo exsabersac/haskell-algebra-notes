@@ -1,0 +1,22 @@
+cabal-version:      2.4
+name:               tao-category-void-unit
+version:            0.1.0.0
+synopsis:           Code for deep-dive ep.2 Void and Unit
+license:            MIT
+build-type:         Simple
+
+common shared
+  default-language: Haskell2010
+  ghc-options:      -Wall -Wno-unused-top-binds
+  build-depends:    base >=4 && <5
+
+library
+  import:           shared
+  hs-source-dirs:   src
+  exposed-modules:  VoidUnit
+
+executable tao-category-void-unit
+  import:           shared
+  hs-source-dirs:   app
+  main-is:          Main.hs
+  build-depends:    tao-category-void-unit

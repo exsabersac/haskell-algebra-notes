@@ -9,6 +9,7 @@
 | 入门篇 | 道可道：用《道德经》入门范畴论与 Haskell | https://youtu.be/Rvr0Kaigv0U | 目前不公开 |
 | 进阶篇 | 道可道：用《道德经》读范畴论与 Haskell（Fix / 伴随 / 米田） | https://youtu.be/MHO5Go3j49A | — |
 | 深讲 01 | 类型与箭头 | https://youtu.be/7_gerVxtJ_8 （不公开） | 材料已入库 |
+| 深讲 02 | Void 与 () | YouTube 上传后补链接 | 材料已入库 |
 
 目录：
 
@@ -69,6 +70,22 @@
 09:15 结语：看箭头 · 下集 Void/()
 ```
 
+### 深讲 02 · Void 与 ()（成片约 08:04）
+
+材料：[`detail/02-void-unit/`](detail/02-void-unit/) · YouTube：上传后补链接
+
+来源：[`detail/02-void-unit/final/youtube.md`](detail/02-void-unit/final/youtube.md)
+
+```
+00:00 开场：深讲第二集
+00:52 一 有无相生：始与终
+02:06 二 Void：无出射 · 始对象
+03:35 三 ()：唯一入 · 终对象
+04:42 四 对偶：有无相生
+05:59 五 落到 Haskell：absurd 与 const
+07:23 结语：下集 Maybe / List
+```
+
 ---
 
 ## 运行片中的 Haskell
@@ -84,6 +101,9 @@ cabal build && cabal run tao-category
 
 cd videos/tao-category/detail/01-types-arrows/haskell
 cabal build && cabal run tao-category-types-arrows
+
+cd videos/tao-category/detail/02-void-unit/haskell
+cabal build && cabal run tao-category-void-unit
 ```
 
 屏幕代码用 `-- {{snip:NAME}}` … `-- {{/snip}}` 标记，由 `manim/common.py:load_snip` 抽取。GHC ≥ 9、`cabal`、`-Wall`。
