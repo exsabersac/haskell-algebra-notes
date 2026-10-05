@@ -17,12 +17,13 @@
 | 进阶深讲 07 | 道可道 | YouTube https://youtu.be/5xFtaQQq3bE （不公开） | 材料已入库 |
 | 进阶深讲 08 | 有无相生 | YouTube https://youtu.be/W0qWYFRnTPs （不公开） | 材料已入库 |
 | 进阶深讲 09 | 道生一 | YouTube 上传后补链接 | 材料已入库 |
+| 进阶深讲 10 | 反者道之动 | YouTube 上传后补链接 | 材料已入库 |
 
 目录：
 
 - [`beginner/`](beginner/) — 入门篇
 - [`advanced/`](advanced/) — 进阶篇
-- [`detail/`](detail/) — 深讲系列（逐题展开）；**入门深讲 01–06 材料已齐；进阶深讲 07–09 材料已入库**
+- [`detail/`](detail/) — 深讲系列（逐题展开）；**入门深讲 01–06 材料已齐；进阶深讲 07–10 材料已入库**
 
 每集结构大致相同：`script.md`、`haskell/`、`manim/`、`final/youtube.md`、字幕 `.srt`、`thumbnail.png`、`final/preview-frames/`（若干 jpg）。
 
@@ -214,6 +215,25 @@
 10:32 结语：下集反者道之动
 ```
 
+
+### 进阶深讲 10 · 反者道之动（成片约 10:26）
+
+材料：[`detail/10-fan-zhe/`](detail/10-fan-zhe/) · YouTube 上传后补链接
+
+来源：[`detail/10-fan-zhe/final/youtube.md`](detail/10-fan-zhe/final/youtube.md)
+
+```
+00:00 开场：反者道之动
+00:58 一 道德经钩子
+02:06 二 余代数与同态
+03:30 三 终余代数与 ana
+04:52 四 翻转：图与代码
+06:18 五 μF 与 νF
+07:31 六 hylo：先生而后归
+08:46 七 短 Haskell
+09:43 结语：下集知其雄守其雌
+```
+
 ---
 
 ## 运行片中的 Haskell
@@ -253,6 +273,9 @@ cabal build && cabal run tao-category-you-wu
 
 cd videos/tao-category/detail/09-dao-sheng-yi/haskell
 cabal build && cabal run tao-category-dao-sheng-yi
+
+cd videos/tao-category/detail/10-fan-zhe/haskell
+cabal build && cabal run tao-category-fan-zhe
 ```
 
 屏幕代码用 `-- {{snip:NAME}}` … `-- {{/snip}}` 标记，由 `manim/common.py:load_snip` 抽取。GHC ≥ 9、`cabal`、`-Wall`。
