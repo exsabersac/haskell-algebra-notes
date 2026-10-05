@@ -13,7 +13,7 @@
 | 深讲 03 | Maybe 与 List | YouTube https://youtu.be/7G8f5TJ0uRA （不公开） | 材料已入库 |
 | 深讲 04 | 构造与折叠 | YouTube https://youtu.be/t9FMZVuRCxM （不公开） | 材料已入库 |
 | 深讲 05 | Functor | YouTube https://youtu.be/2t11eDI33T0 （不公开） | 材料已入库 |
-| 深讲 06 | Monad / do | YouTube 上传后补链接 | 材料已入库 |
+| 深讲 06 | Monad / do | YouTube https://youtu.be/YFuOdPQGx2g （不公开） | 材料已入库 |
 
 目录：
 
@@ -143,7 +143,7 @@
 
 ### 深讲 06 · Monad / do（成片约 08:08）
 
-材料：[`detail/06-monad-do/`](detail/06-monad-do/) · YouTube 上传后补链接
+材料：[`detail/06-monad-do/`](detail/06-monad-do/) · YouTube https://youtu.be/YFuOdPQGx2g （不公开）
 
 来源：[`detail/06-monad-do/final/youtube.md`](detail/06-monad-do/final/youtube.md)
 
