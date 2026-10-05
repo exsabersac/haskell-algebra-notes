@@ -8,7 +8,7 @@
 |------|------|------|------|
 | 入门篇 | 道可道：用《道德经》入门范畴论与 Haskell | https://youtu.be/Rvr0Kaigv0U | 目前不公开 |
 | 进阶篇 | 道可道：用《道德经》读范畴论与 Haskell（Fix / 伴随 / 米田） | https://youtu.be/MHO5Go3j49A | — |
-| 深讲 01 | 类型与箭头 | 上传后补链接 | 材料已入库 |
+| 深讲 01 | 类型与箭头 | https://youtu.be/7_gerVxtJ_8 （不公开） | 材料已入库 |
 
 目录：
 
@@ -54,7 +54,7 @@
 
 ### 深讲 01 · 类型与箭头（成片约 09:57）
 
-材料：[`detail/01-types-arrows/`](detail/01-types-arrows/) · YouTube：上传后补链接
+材料：[`detail/01-types-arrows/`](detail/01-types-arrows/) · YouTube：https://youtu.be/7_gerVxtJ_8 （不公开）
 
 来源：[`detail/01-types-arrows/final/youtube.md`](detail/01-types-arrows/final/youtube.md)
 
