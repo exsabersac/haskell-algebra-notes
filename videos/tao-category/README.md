@@ -15,7 +15,7 @@
 | 深讲 05 | Functor | YouTube https://youtu.be/2t11eDI33T0 （不公开） | 材料已入库 |
 | 深讲 06 | Monad / do | YouTube https://youtu.be/YFuOdPQGx2g （不公开） | 材料已入库 |
 | 进阶深讲 07 | 道可道 | YouTube https://youtu.be/5xFtaQQq3bE （不公开） | 材料已入库 |
-| 进阶深讲 08 | 有无相生 | YouTube 上传后补链接 | 材料已入库 |
+| 进阶深讲 08 | 有无相生 | YouTube https://youtu.be/W0qWYFRnTPs （不公开） | 材料已入库 |
 
 目录：
 
@@ -179,7 +179,7 @@
 
 ### 进阶深讲 08 · 有无相生（成片约 09:22）
 
-材料：[`detail/08-you-wu/`](detail/08-you-wu/) · YouTube 上传后补链接
+材料：[`detail/08-you-wu/`](detail/08-you-wu/) · YouTube https://youtu.be/W0qWYFRnTPs （不公开）
 
 来源：[`detail/08-you-wu/final/youtube.md`](detail/08-you-wu/final/youtube.md)
 
