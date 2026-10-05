@@ -16,12 +16,13 @@
 | 深讲 06 | Monad / do | YouTube https://youtu.be/YFuOdPQGx2g （不公开） | 材料已入库 |
 | 进阶深讲 07 | 道可道 | YouTube https://youtu.be/5xFtaQQq3bE （不公开） | 材料已入库 |
 | 进阶深讲 08 | 有无相生 | YouTube https://youtu.be/W0qWYFRnTPs （不公开） | 材料已入库 |
+| 进阶深讲 09 | 道生一 | YouTube 上传后补链接 | 材料已入库 |
 
 目录：
 
 - [`beginner/`](beginner/) — 入门篇
 - [`advanced/`](advanced/) — 进阶篇
-- [`detail/`](detail/) — 深讲系列（逐题展开）；**入门深讲 01–06 材料已齐；进阶深讲 07–08 材料已入库**
+- [`detail/`](detail/) — 深讲系列（逐题展开）；**入门深讲 01–06 材料已齐；进阶深讲 07–09 材料已入库**
 
 每集结构大致相同：`script.md`、`haskell/`、`manim/`、`final/youtube.md`、字幕 `.srt`、`thumbnail.png`、`final/preview-frames/`（若干 jpg）。
 
@@ -194,6 +195,25 @@
 08:38 结语：下集道生一
 ```
 
+
+### 进阶深讲 09 · 道生一（成片约 11:17）
+
+材料：[`detail/09-dao-sheng-yi/`](detail/09-dao-sheng-yi/) · YouTube 上传后补链接
+
+来源：[`detail/09-dao-sheng-yi/final/youtube.md`](detail/09-dao-sheng-yi/final/youtube.md)
+
+```
+00:00 开场：道生一
+00:54 一 道德经钩子
+02:00 二 代数与同态
+03:25 三 初始代数与 cata
+04:46 四 兰贝克引理
+06:22 五 Fix 与 cata 的来历
+07:48 六 从无出发：余极限
+09:16 七 短 Haskell
+10:32 结语：下集反者道之动
+```
+
 ---
 
 ## 运行片中的 Haskell
@@ -230,6 +250,9 @@ cabal build && cabal run tao-category-dao-sayable
 
 cd videos/tao-category/detail/08-you-wu/haskell
 cabal build && cabal run tao-category-you-wu
+
+cd videos/tao-category/detail/09-dao-sheng-yi/haskell
+cabal build && cabal run tao-category-dao-sheng-yi
 ```
 
 屏幕代码用 `-- {{snip:NAME}}` … `-- {{/snip}}` 标记，由 `manim/common.py:load_snip` 抽取。GHC ≥ 9、`cabal`、`-Wall`。
