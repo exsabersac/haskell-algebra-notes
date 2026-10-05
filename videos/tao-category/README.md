@@ -19,12 +19,13 @@
 | 进阶深讲 09 | 道生一 | YouTube 上传后补链接 | 材料已入库 |
 | 进阶深讲 10 | 反者道之动 | YouTube 上传后补链接 | 材料已入库 |
 | 进阶深讲 11 | 知其雄守其雌 | YouTube 上传后补链接 | 材料已入库 |
+| 进阶深讲 12 | 无为而无不为 | YouTube 上传后补链接（waiting for daily upload quota） | 材料已入库 |
 
 目录：
 
 - [`beginner/`](beginner/) — 入门篇
 - [`advanced/`](advanced/) — 进阶篇
-- [`detail/`](detail/) — 深讲系列（逐题展开）；**入门深讲 01–06 材料已齐；进阶深讲 07–11 材料已入库**
+- [`detail/`](detail/) — 深讲系列（逐题展开）；**生产材料 01–12 已齐（系列完结）**
 
 每集结构大致相同：`script.md`、`haskell/`、`manim/`、`final/youtube.md`、字幕 `.srt`、`thumbnail.png`、`final/preview-frames/`（若干 jpg）。
 
@@ -254,6 +255,23 @@
 11:10 结语：下集无为而无不为
 ```
 
+
+### 进阶深讲 12 · 无为而无不为（成片约 09:10）
+
+材料：[`detail/12-wu-wei/`](detail/12-wu-wei/) · YouTube 上传后补链接（waiting for daily upload quota）
+
+来源：[`detail/12-wu-wei/final/youtube.md`](detail/12-wu-wei/final/youtube.md)
+
+```
+00:00 开场：无为而无不为
+00:57 一 道德经钩子
+02:06 二 可表函子
+03:32 三 米田引理
+05:15 四 Haskell：Yoneda 与 forall
+06:36 五 Kan 扩张：Ran 与 Lan
+08:09 结语：回到道可道（系列完结）
+```
+
 ---
 
 ## 运行片中的 Haskell
@@ -299,6 +317,9 @@ cabal build && cabal run tao-category-fan-zhe
 
 cd videos/tao-category/detail/11-xiong-ci/haskell
 cabal build && cabal run tao-category-xiong-ci
+
+cd videos/tao-category/detail/12-wu-wei/haskell
+cabal build && cabal run tao-category-wu-wei
 ```
 
 屏幕代码用 `-- {{snip:NAME}}` … `-- {{/snip}}` 标记，由 `manim/common.py:load_snip` 抽取。GHC ≥ 9、`cabal`、`-Wall`。
