@@ -13,12 +13,13 @@
 | 深讲 03 | Maybe 与 List | YouTube https://youtu.be/7G8f5TJ0uRA （不公开） | 材料已入库 |
 | 深讲 04 | 构造与折叠 | YouTube https://youtu.be/t9FMZVuRCxM （不公开） | 材料已入库 |
 | 深讲 05 | Functor | YouTube https://youtu.be/2t11eDI33T0 （不公开） | 材料已入库 |
+| 深讲 06 | Monad / do | YouTube 上传后补链接 | 材料已入库 |
 
 目录：
 
 - [`beginner/`](beginner/) — 入门篇
 - [`advanced/`](advanced/) — 进阶篇
-- [`detail/`](detail/) — 深讲系列（逐题展开）
+- [`detail/`](detail/) — 深讲系列（逐题展开）；**入门深讲 01–06 材料已齐**
 
 每集结构大致相同：`script.md`、`haskell/`、`manim/`、`final/youtube.md`、字幕 `.srt`、`thumbnail.png`、`final/preview-frames/`（若干 jpg）。
 
@@ -139,6 +140,23 @@
 07:34 结语：下集 Monad
 ```
 
+
+### 深讲 06 · Monad / do（成片约 08:08）
+
+材料：[`detail/06-monad-do/`](detail/06-monad-do/) · YouTube 上传后补链接
+
+来源：[`detail/06-monad-do/final/youtube.md`](detail/06-monad-do/final/youtube.md)
+
+```
+00:00 开场：深讲第六集
+00:53 一 道生一
+01:55 二 bind / 鱼子
+03:22 三 定律浅讲
+04:41 四 do 记法
+06:00 五 Maybe 与 List
+07:20 结语：进阶篇
+```
+
 ---
 
 ## 运行片中的 Haskell
@@ -166,6 +184,9 @@ cabal build && cabal run tao-category-fold-unfold
 
 cd videos/tao-category/detail/05-functor/haskell
 cabal build && cabal run tao-category-functor
+
+cd videos/tao-category/detail/06-monad-do/haskell
+cabal build && cabal run tao-category-monad
 ```
 
 屏幕代码用 `-- {{snip:NAME}}` … `-- {{/snip}}` 标记，由 `manim/common.py:load_snip` 抽取。GHC ≥ 9、`cabal`、`-Wall`。
