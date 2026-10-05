@@ -18,12 +18,13 @@
 | 进阶深讲 08 | 有无相生 | YouTube https://youtu.be/W0qWYFRnTPs （不公开） | 材料已入库 |
 | 进阶深讲 09 | 道生一 | YouTube 上传后补链接 | 材料已入库 |
 | 进阶深讲 10 | 反者道之动 | YouTube 上传后补链接 | 材料已入库 |
+| 进阶深讲 11 | 知其雄守其雌 | YouTube 上传后补链接 | 材料已入库 |
 
 目录：
 
 - [`beginner/`](beginner/) — 入门篇
 - [`advanced/`](advanced/) — 进阶篇
-- [`detail/`](detail/) — 深讲系列（逐题展开）；**入门深讲 01–06 材料已齐；进阶深讲 07–10 材料已入库**
+- [`detail/`](detail/) — 深讲系列（逐题展开）；**入门深讲 01–06 材料已齐；进阶深讲 07–11 材料已入库**
 
 每集结构大致相同：`script.md`、`haskell/`、`manim/`、`final/youtube.md`、字幕 `.srt`、`thumbnail.png`、`final/preview-frames/`（若干 jpg）。
 
@@ -234,6 +235,25 @@
 09:43 结语：下集知其雄守其雌
 ```
 
+
+### 进阶深讲 11 · 知其雄守其雌（成片约 11:51）
+
+材料：[`detail/11-xiong-ci/`](detail/11-xiong-ci/) · YouTube 上传后补链接
+
+来源：[`detail/11-xiong-ci/final/youtube.md`](detail/11-xiong-ci/final/youtube.md)
+
+```
+00:00 开场：知其雄，守其雌
+00:59 一 道德经钩子
+02:15 二 伴随：hom 同构
+03:48 三 单位、余单位与三角
+05:23 四 R∘L：State 单子
+07:06 五 L∘R：Store 余单子
+08:28 六 知其雄，守其雌
+09:56 七 短 Haskell
+11:10 结语：下集无为而无不为
+```
+
 ---
 
 ## 运行片中的 Haskell
@@ -276,6 +296,9 @@ cabal build && cabal run tao-category-dao-sheng-yi
 
 cd videos/tao-category/detail/10-fan-zhe/haskell
 cabal build && cabal run tao-category-fan-zhe
+
+cd videos/tao-category/detail/11-xiong-ci/haskell
+cabal build && cabal run tao-category-xiong-ci
 ```
 
 屏幕代码用 `-- {{snip:NAME}}` … `-- {{/snip}}` 标记，由 `manim/common.py:load_snip` 抽取。GHC ≥ 9、`cabal`、`-Wall`。

@@ -1,0 +1,6 @@
+dist-newstyle/
+__pycache__/
+*.mp4
+build/
+audio/
+.venv
