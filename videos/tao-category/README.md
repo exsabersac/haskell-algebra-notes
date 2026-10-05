@@ -10,7 +10,7 @@
 | 进阶篇 | 道可道：用《道德经》读范畴论与 Haskell（Fix / 伴随 / 米田） | https://youtu.be/MHO5Go3j49A | — |
 | 深讲 01 | 类型与箭头 | https://youtu.be/7_gerVxtJ_8 （不公开） | 材料已入库 |
 | 深讲 02 | Void 与 () | YouTube https://youtu.be/ZnL-qV2bxTI （不公开） | 材料已入库 |
-| 深讲 03 | Maybe 与 List | YouTube 上传后补链接 | 材料已入库 |
+| 深讲 03 | Maybe 与 List | YouTube https://youtu.be/7G8f5TJ0uRA （不公开） | 材料已入库 |
 
 目录：
 
@@ -89,7 +89,7 @@
 
 ### 深讲 03 · Maybe 与 List（成片约 07:50）
 
-材料：[`detail/03-maybe-list/`](detail/03-maybe-list/) · YouTube：上传后补链接
+材料：[`detail/03-maybe-list/`](detail/03-maybe-list/) · YouTube：https://youtu.be/7G8f5TJ0uRA （不公开）
 
 来源：[`detail/03-maybe-list/final/youtube.md`](detail/03-maybe-list/final/youtube.md)
 
