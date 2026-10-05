@@ -15,12 +15,13 @@
 | 深讲 05 | Functor | YouTube https://youtu.be/2t11eDI33T0 （不公开） | 材料已入库 |
 | 深讲 06 | Monad / do | YouTube https://youtu.be/YFuOdPQGx2g （不公开） | 材料已入库 |
 | 进阶深讲 07 | 道可道 | YouTube https://youtu.be/5xFtaQQq3bE （不公开） | 材料已入库 |
+| 进阶深讲 08 | 有无相生 | YouTube 上传后补链接 | 材料已入库 |
 
 目录：
 
 - [`beginner/`](beginner/) — 入门篇
 - [`advanced/`](advanced/) — 进阶篇
-- [`detail/`](detail/) — 深讲系列（逐题展开）；**入门深讲 01–06 材料已齐；进阶深讲 07 材料已入库**
+- [`detail/`](detail/) — 深讲系列（逐题展开）；**入门深讲 01–06 材料已齐；进阶深讲 07–08 材料已入库**
 
 每集结构大致相同：`script.md`、`haskell/`、`manim/`、`final/youtube.md`、字幕 `.srt`、`thumbnail.png`、`final/preview-frames/`（若干 jpg）。
 
@@ -175,6 +176,24 @@
 07:45 结语：下集有无相生
 ```
 
+
+### 进阶深讲 08 · 有无相生（成片约 09:22）
+
+材料：[`detail/08-you-wu/`](detail/08-you-wu/) · YouTube 上传后补链接
+
+来源：[`detail/08-you-wu/final/youtube.md`](detail/08-you-wu/final/youtube.md)
+
+```
+00:00 开场：有无相生
+01:00 一 道德经钩子
+02:05 二 始与终
+03:29 三 对偶范畴
+04:39 四 积与余积
+06:05 五 探针与否定
+07:21 六 短 Haskell
+08:38 结语：下集道生一
+```
+
 ---
 
 ## 运行片中的 Haskell
@@ -208,6 +227,9 @@ cabal build && cabal run tao-category-monad
 
 cd videos/tao-category/detail/07-dao-sayable/haskell
 cabal build && cabal run tao-category-dao-sayable
+
+cd videos/tao-category/detail/08-you-wu/haskell
+cabal build && cabal run tao-category-you-wu
 ```
 
 屏幕代码用 `-- {{snip:NAME}}` … `-- {{/snip}}` 标记，由 `manim/common.py:load_snip` 抽取。GHC ≥ 9、`cabal`、`-Wall`。
