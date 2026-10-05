@@ -12,6 +12,7 @@
 | 深讲 02 | Void 与 () | YouTube https://youtu.be/ZnL-qV2bxTI （不公开） | 材料已入库 |
 | 深讲 03 | Maybe 与 List | YouTube https://youtu.be/7G8f5TJ0uRA （不公开） | 材料已入库 |
 | 深讲 04 | 构造与折叠 | YouTube https://youtu.be/t9FMZVuRCxM （不公开） | 材料已入库 |
+| 深讲 05 | Functor | YouTube 上传后补链接 | 材料已入库 |
 
 目录：
 
@@ -121,6 +122,23 @@
 08:09 结语：下集 Functor
 ```
 
+
+### 深讲 05 · Functor（成片约 08:16）
+
+材料：[`detail/05-functor/`](detail/05-functor/) · YouTube 上传后补链接
+
+来源：[`detail/05-functor/final/youtube.md`](detail/05-functor/final/youtube.md)
+
+```
+00:00 开场：深讲第五集
+00:49 一 大制不割
+01:52 二 函子保形
+03:22 三 fmap / 交换图
+04:48 四 函子定律
+06:14 五 Maybe 与 List
+07:34 结语：下集 Monad
+```
+
 ---
 
 ## 运行片中的 Haskell
@@ -145,6 +163,9 @@ cabal build && cabal run tao-category-maybe-list
 
 cd videos/tao-category/detail/04-fold-unfold/haskell
 cabal build && cabal run tao-category-fold-unfold
+
+cd videos/tao-category/detail/05-functor/haskell
+cabal build && cabal run tao-category-functor
 ```
 
 屏幕代码用 `-- {{snip:NAME}}` … `-- {{/snip}}` 标记，由 `manim/common.py:load_snip` 抽取。GHC ≥ 9、`cabal`、`-Wall`。
