@@ -8,11 +8,13 @@
 |------|------|------|------|
 | 入门篇 | 道可道：用《道德经》入门范畴论与 Haskell | https://youtu.be/Rvr0Kaigv0U | 目前不公开 |
 | 进阶篇 | 道可道：用《道德经》读范畴论与 Haskell（Fix / 伴随 / 米田） | https://youtu.be/MHO5Go3j49A | — |
+| 深讲 01 | 类型与箭头 | 上传后补链接 | 材料已入库 |
 
 目录：
 
 - [`beginner/`](beginner/) — 入门篇
 - [`advanced/`](advanced/) — 进阶篇
+- [`detail/`](detail/) — 深讲系列（逐题展开）
 
 每集结构大致相同：`script.md`、`haskell/`、`manim/`、`final/youtube.md`、字幕 `.srt`、`thumbnail.png`、`final/preview-frames/`（若干 jpg）。
 
@@ -50,6 +52,23 @@
 13:44 结语：看箭头
 ```
 
+### 深讲 01 · 类型与箭头（成片约 09:57）
+
+材料：[`detail/01-types-arrows/`](detail/01-types-arrows/) · YouTube：上传后补链接
+
+来源：[`detail/01-types-arrows/final/youtube.md`](detail/01-types-arrows/final/youtube.md)
+
+```
+00:00 开场：深讲第一集
+00:56 一 道可道：对象不可道，箭头可道
+02:10 二 地图：点与路
+03:27 三 类型是对象，函数是箭头
+04:57 四 复合与结合律
+06:31 五 恒等：无为的环路
+07:44 六 落到 Haskell：id 与 (.)
+09:15 结语：看箭头 · 下集 Void/()
+```
+
 ---
 
 ## 运行片中的 Haskell
@@ -62,6 +81,9 @@ cabal build && cabal run tao-category-beginner
 
 cd videos/tao-category/advanced/haskell
 cabal build && cabal run tao-category
+
+cd videos/tao-category/detail/01-types-arrows/haskell
+cabal build && cabal run tao-category-types-arrows
 ```
 
 屏幕代码用 `-- {{snip:NAME}}` … `-- {{/snip}}` 标记，由 `manim/common.py:load_snip` 抽取。GHC ≥ 9、`cabal`、`-Wall`。
