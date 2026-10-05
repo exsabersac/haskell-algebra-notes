@@ -11,7 +11,7 @@
 | 深讲 01 | 类型与箭头 | https://youtu.be/7_gerVxtJ_8 （不公开） | 材料已入库 |
 | 深讲 02 | Void 与 () | YouTube https://youtu.be/ZnL-qV2bxTI （不公开） | 材料已入库 |
 | 深讲 03 | Maybe 与 List | YouTube https://youtu.be/7G8f5TJ0uRA （不公开） | 材料已入库 |
-| 深讲 04 | 构造与折叠 | YouTube 上传后补链接 | 材料已入库 |
+| 深讲 04 | 构造与折叠 | YouTube https://youtu.be/t9FMZVuRCxM （不公开） | 材料已入库 |
 
 目录：
 
@@ -107,7 +107,7 @@
 
 ### 深讲 04 · 构造与折叠（成片约 08:50）
 
-材料：[`detail/04-fold-unfold/`](detail/04-fold-unfold/) · YouTube 上传后补链接
+材料：[`detail/04-fold-unfold/`](detail/04-fold-unfold/) · YouTube https://youtu.be/t9FMZVuRCxM （不公开）
 
 来源：[`detail/04-fold-unfold/final/youtube.md`](detail/04-fold-unfold/final/youtube.md)
 
