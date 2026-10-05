@@ -12,7 +12,7 @@
 | 深讲 02 | Void 与 () | YouTube https://youtu.be/ZnL-qV2bxTI （不公开） | 材料已入库 |
 | 深讲 03 | Maybe 与 List | YouTube https://youtu.be/7G8f5TJ0uRA （不公开） | 材料已入库 |
 | 深讲 04 | 构造与折叠 | YouTube https://youtu.be/t9FMZVuRCxM （不公开） | 材料已入库 |
-| 深讲 05 | Functor | YouTube 上传后补链接 | 材料已入库 |
+| 深讲 05 | Functor | YouTube https://youtu.be/2t11eDI33T0 （不公开） | 材料已入库 |
 
 目录：
 
@@ -125,7 +125,7 @@
 
 ### 深讲 05 · Functor（成片约 08:16）
 
-材料：[`detail/05-functor/`](detail/05-functor/) · YouTube 上传后补链接
+材料：[`detail/05-functor/`](detail/05-functor/) · YouTube https://youtu.be/2t11eDI33T0 （不公开）
 
 来源：[`detail/05-functor/final/youtube.md`](detail/05-functor/final/youtube.md)
 
