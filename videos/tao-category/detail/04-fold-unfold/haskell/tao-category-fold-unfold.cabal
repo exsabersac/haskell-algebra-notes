@@ -1,0 +1,22 @@
+cabal-version:      2.4
+name:               tao-category-fold-unfold
+version:            0.1.0.0
+synopsis:           Code for deep-dive ep.4 Fold and Unfold
+license:            MIT
+build-type:         Simple
+
+common shared
+  default-language: Haskell2010
+  ghc-options:      -Wall -Wno-unused-top-binds
+  build-depends:    base >=4 && <5
+
+library
+  import:           shared
+  hs-source-dirs:   src
+  exposed-modules:  FoldUnfold
+
+executable tao-category-fold-unfold
+  import:           shared
+  hs-source-dirs:   app
+  main-is:          Main.hs
+  build-depends:    tao-category-fold-unfold

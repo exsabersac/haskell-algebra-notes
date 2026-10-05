@@ -11,6 +11,7 @@
 | 深讲 01 | 类型与箭头 | https://youtu.be/7_gerVxtJ_8 （不公开） | 材料已入库 |
 | 深讲 02 | Void 与 () | YouTube https://youtu.be/ZnL-qV2bxTI （不公开） | 材料已入库 |
 | 深讲 03 | Maybe 与 List | YouTube https://youtu.be/7G8f5TJ0uRA （不公开） | 材料已入库 |
+| 深讲 04 | 构造与折叠 | YouTube 上传后补链接 | 材料已入库 |
 
 目录：
 
@@ -103,6 +104,23 @@
 07:13 结语：下集构造与折叠
 ```
 
+
+### 深讲 04 · 构造与折叠（成片约 08:50）
+
+材料：[`detail/04-fold-unfold/`](detail/04-fold-unfold/) · YouTube 上传后补链接
+
+来源：[`detail/04-fold-unfold/final/youtube.md`](detail/04-fold-unfold/final/youtube.md)
+
+```
+00:00 开场：深讲第四集
+00:55 一 各复归其根
+02:02 二 构造代数
+03:38 三 折叠 cata / foldr
+05:14 四 展开 ana（浅提）
+06:44 五 落到 Haskell
+08:09 结语：下集 Functor
+```
+
 ---
 
 ## 运行片中的 Haskell
@@ -124,6 +142,9 @@ cabal build && cabal run tao-category-void-unit
 
 cd videos/tao-category/detail/03-maybe-list/haskell
 cabal build && cabal run tao-category-maybe-list
+
+cd videos/tao-category/detail/04-fold-unfold/haskell
+cabal build && cabal run tao-category-fold-unfold
 ```
 
 屏幕代码用 `-- {{snip:NAME}}` … `-- {{/snip}}` 标记，由 `manim/common.py:load_snip` 抽取。GHC ≥ 9、`cabal`、`-Wall`。
