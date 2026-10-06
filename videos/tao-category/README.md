@@ -16,10 +16,10 @@
 | 深讲 06 | Monad / do | YouTube https://youtu.be/YFuOdPQGx2g （不公开） | 材料已入库 |
 | 进阶深讲 07 | 道可道 | YouTube https://youtu.be/5xFtaQQq3bE （不公开） | 材料已入库 |
 | 进阶深讲 08 | 有无相生 | YouTube https://youtu.be/W0qWYFRnTPs （不公开） | 材料已入库 |
-| 进阶深讲 09 | 道生一 | YouTube 上传后补链接 | 材料已入库 |
-| 进阶深讲 10 | 反者道之动 | YouTube 上传后补链接 | 材料已入库 |
-| 进阶深讲 11 | 知其雄守其雌 | YouTube 上传后补链接 | 材料已入库 |
-| 进阶深讲 12 | 无为而无不为 | YouTube 上传后补链接（waiting for daily upload quota） | 材料已入库 |
+| 进阶深讲 09 | 道生一 | YouTube https://youtu.be/odkw8-ZSNvs （不公开） | 材料已入库 |
+| 进阶深讲 10 | 反者道之动 | YouTube https://youtu.be/XlhS82YiU7o （不公开） | 材料已入库 |
+| 进阶深讲 11 | 知其雄守其雌 | YouTube https://youtu.be/z6qSAbYMsbc （不公开） | 材料已入库 |
+| 进阶深讲 12 | 无为而无不为 | YouTube https://youtu.be/9sM3ydYjWwo （不公开） | 材料已入库 |
 
 目录：
 
@@ -201,7 +201,7 @@
 
 ### 进阶深讲 09 · 道生一（成片约 11:17）
 
-材料：[`detail/09-dao-sheng-yi/`](detail/09-dao-sheng-yi/) · YouTube 上传后补链接
+材料：[`detail/09-dao-sheng-yi/`](detail/09-dao-sheng-yi/) · YouTube https://youtu.be/odkw8-ZSNvs （不公开）
 
 来源：[`detail/09-dao-sheng-yi/final/youtube.md`](detail/09-dao-sheng-yi/final/youtube.md)
 
@@ -220,7 +220,7 @@
 
 ### 进阶深讲 10 · 反者道之动（成片约 10:26）
 
-材料：[`detail/10-fan-zhe/`](detail/10-fan-zhe/) · YouTube 上传后补链接
+材料：[`detail/10-fan-zhe/`](detail/10-fan-zhe/) · YouTube https://youtu.be/XlhS82YiU7o （不公开）
 
 来源：[`detail/10-fan-zhe/final/youtube.md`](detail/10-fan-zhe/final/youtube.md)
 
@@ -239,7 +239,7 @@
 
 ### 进阶深讲 11 · 知其雄守其雌（成片约 11:51）
 
-材料：[`detail/11-xiong-ci/`](detail/11-xiong-ci/) · YouTube 上传后补链接
+材料：[`detail/11-xiong-ci/`](detail/11-xiong-ci/) · YouTube https://youtu.be/z6qSAbYMsbc （不公开）
 
 来源：[`detail/11-xiong-ci/final/youtube.md`](detail/11-xiong-ci/final/youtube.md)
 
@@ -258,7 +258,7 @@
 
 ### 进阶深讲 12 · 无为而无不为（成片约 09:10）
 
-材料：[`detail/12-wu-wei/`](detail/12-wu-wei/) · YouTube 上传后补链接（waiting for daily upload quota）
+材料：[`detail/12-wu-wei/`](detail/12-wu-wei/) · YouTube https://youtu.be/9sM3ydYjWwo （不公开）
 
 来源：[`detail/12-wu-wei/final/youtube.md`](detail/12-wu-wei/final/youtube.md)
 
