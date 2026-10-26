@@ -6,20 +6,20 @@
 
 | 集数 | 标题 | 链接 | 状态 |
 |------|------|------|------|
-| 入门篇 | 道可道：用《道德经》入门范畴论与 Haskell | https://youtu.be/Rvr0Kaigv0U | 目前不公开 |
-| 进阶篇 | 道可道：用《道德经》读范畴论与 Haskell（Fix / 伴随 / 米田） | https://youtu.be/MHO5Go3j49A | — |
-| 深讲 01 | 类型与箭头 | https://youtu.be/7_gerVxtJ_8 （不公开） | 材料已入库 |
-| 深讲 02 | Void 与 () | YouTube https://youtu.be/ZnL-qV2bxTI （不公开） | 材料已入库 |
-| 深讲 03 | Maybe 与 List | YouTube https://youtu.be/7G8f5TJ0uRA （不公开） | 材料已入库 |
-| 深讲 04 | 构造与折叠 | YouTube https://youtu.be/t9FMZVuRCxM （不公开） | 材料已入库 |
-| 深讲 05 | Functor | YouTube https://youtu.be/2t11eDI33T0 （不公开） | 材料已入库 |
-| 深讲 06 | Monad / do | YouTube https://youtu.be/YFuOdPQGx2g （不公开） | 材料已入库 |
-| 进阶深讲 07 | 道可道 | YouTube https://youtu.be/5xFtaQQq3bE （不公开） | 材料已入库 |
-| 进阶深讲 08 | 有无相生 | YouTube https://youtu.be/W0qWYFRnTPs （不公开） | 材料已入库 |
-| 进阶深讲 09 | 道生一 | YouTube https://youtu.be/odkw8-ZSNvs （不公开） | 材料已入库 |
-| 进阶深讲 10 | 反者道之动 | YouTube https://youtu.be/XlhS82YiU7o （不公开） | 材料已入库 |
-| 进阶深讲 11 | 知其雄守其雌 | YouTube https://youtu.be/z6qSAbYMsbc （不公开） | 材料已入库 |
-| 进阶深讲 12 | 无为而无不为 | YouTube https://youtu.be/9sM3ydYjWwo （不公开） | 材料已入库 |
+| 入门篇 | 道可道：用《道德经》入门范畴论与 Haskell | https://youtu.be/0oGObpuECFw | 已公开 |
+| 进阶篇 | 道可道：用《道德经》读范畴论与 Haskell（Fix / 伴随 / 米田） | https://youtu.be/rgZaVwKGVrE | 已公开 |
+| 深讲 01 | 类型与箭头 | https://youtu.be/b9-HRcZn5i8 | 已公开 · 材料已入库 |
+| 深讲 02 | Void 与 () | https://youtu.be/X-7fkUNVhGY | 已公开 · 材料已入库 |
+| 深讲 03 | Maybe 与 List | https://youtu.be/Doi6ZvM8M04 | 已公开 · 材料已入库 |
+| 深讲 04 | 构造与折叠 | https://youtu.be/owBRduwaKu0 | 已公开 · 材料已入库 |
+| 深讲 05 | Functor | https://youtu.be/DYobNxSDeI8 | 已公开 · 材料已入库 |
+| 深讲 06 | Monad / do | https://youtu.be/dGK2nZXg1VU | 已公开 · 材料已入库 |
+| 进阶深讲 07 | 道可道 | https://youtu.be/lGzbXvhYP70 | 已公开 · 材料已入库 |
+| 进阶深讲 08 | 有无相生 | https://youtu.be/6lKCDoyT7YA | 已公开 · 材料已入库 |
+| 进阶深讲 09 | 道生一 | https://youtu.be/d8pJ5l3bWug | 已公开 · 材料已入库 |
+| 进阶深讲 10 | 反者道之动 | https://youtu.be/IV2gpiamVXU | 已公开 · 材料已入库 |
+| 进阶深讲 11 | 知其雄守其雌 | https://youtu.be/Bpz6d7x2M7w | 已公开 · 材料已入库 |
+| 进阶深讲 12 | 无为而无不为 | https://youtu.be/NgMUnObfVSg | 已公开 · 材料已入库 |
 
 目录：
 
@@ -34,6 +34,8 @@
 ## 章节
 
 ### 入门篇（成片约 13:36）
+
+材料：[`beginner/`](beginner/) · YouTube：https://youtu.be/0oGObpuECFw
 
 来源：[`beginner/final/youtube.md`](beginner/final/youtube.md)
 
@@ -50,6 +52,8 @@
 
 ### 进阶篇（成片约 14:06）
 
+材料：[`advanced/`](advanced/) · YouTube：https://youtu.be/rgZaVwKGVrE
+
 来源：[`advanced/final/youtube.md`](advanced/final/youtube.md)
 
 ```
@@ -65,7 +69,7 @@
 
 ### 深讲 01 · 类型与箭头（成片约 09:57）
 
-材料：[`detail/01-types-arrows/`](detail/01-types-arrows/) · YouTube：https://youtu.be/7_gerVxtJ_8 （不公开）
+材料：[`detail/01-types-arrows/`](detail/01-types-arrows/) · YouTube：https://youtu.be/b9-HRcZn5i8
 
 来源：[`detail/01-types-arrows/final/youtube.md`](detail/01-types-arrows/final/youtube.md)
 
@@ -82,7 +86,7 @@
 
 ### 深讲 02 · Void 与 ()（成片约 08:04）
 
-材料：[`detail/02-void-unit/`](detail/02-void-unit/) · YouTube：https://youtu.be/ZnL-qV2bxTI （不公开）
+材料：[`detail/02-void-unit/`](detail/02-void-unit/) · YouTube：https://youtu.be/X-7fkUNVhGY
 
 来源：[`detail/02-void-unit/final/youtube.md`](detail/02-void-unit/final/youtube.md)
 
@@ -98,7 +102,7 @@
 
 ### 深讲 03 · Maybe 与 List（成片约 07:50）
 
-材料：[`detail/03-maybe-list/`](detail/03-maybe-list/) · YouTube：https://youtu.be/7G8f5TJ0uRA （不公开）
+材料：[`detail/03-maybe-list/`](detail/03-maybe-list/) · YouTube：https://youtu.be/Doi6ZvM8M04
 
 来源：[`detail/03-maybe-list/final/youtube.md`](detail/03-maybe-list/final/youtube.md)
 
@@ -115,7 +119,7 @@
 
 ### 深讲 04 · 构造与折叠（成片约 08:50）
 
-材料：[`detail/04-fold-unfold/`](detail/04-fold-unfold/) · YouTube https://youtu.be/t9FMZVuRCxM （不公开）
+材料：[`detail/04-fold-unfold/`](detail/04-fold-unfold/) · YouTube：https://youtu.be/owBRduwaKu0
 
 来源：[`detail/04-fold-unfold/final/youtube.md`](detail/04-fold-unfold/final/youtube.md)
 
@@ -132,7 +136,7 @@
 
 ### 深讲 05 · Functor（成片约 08:16）
 
-材料：[`detail/05-functor/`](detail/05-functor/) · YouTube https://youtu.be/2t11eDI33T0 （不公开）
+材料：[`detail/05-functor/`](detail/05-functor/) · YouTube：https://youtu.be/DYobNxSDeI8
 
 来源：[`detail/05-functor/final/youtube.md`](detail/05-functor/final/youtube.md)
 
@@ -149,7 +153,7 @@
 
 ### 深讲 06 · Monad / do（成片约 08:08）
 
-材料：[`detail/06-monad-do/`](detail/06-monad-do/) · YouTube https://youtu.be/YFuOdPQGx2g （不公开）
+材料：[`detail/06-monad-do/`](detail/06-monad-do/) · YouTube：https://youtu.be/dGK2nZXg1VU
 
 来源：[`detail/06-monad-do/final/youtube.md`](detail/06-monad-do/final/youtube.md)
 
@@ -166,7 +170,7 @@
 
 ### 进阶深讲 07 · 道可道（成片约 08:32）
 
-材料：[`detail/07-dao-sayable/`](detail/07-dao-sayable/) · YouTube https://youtu.be/5xFtaQQq3bE （不公开）
+材料：[`detail/07-dao-sayable/`](detail/07-dao-sayable/) · YouTube：https://youtu.be/lGzbXvhYP70
 
 来源：[`detail/07-dao-sayable/final/youtube.md`](detail/07-dao-sayable/final/youtube.md)
 
@@ -183,7 +187,7 @@
 
 ### 进阶深讲 08 · 有无相生（成片约 09:22）
 
-材料：[`detail/08-you-wu/`](detail/08-you-wu/) · YouTube https://youtu.be/W0qWYFRnTPs （不公开）
+材料：[`detail/08-you-wu/`](detail/08-you-wu/) · YouTube：https://youtu.be/6lKCDoyT7YA
 
 来源：[`detail/08-you-wu/final/youtube.md`](detail/08-you-wu/final/youtube.md)
 
@@ -201,7 +205,7 @@
 
 ### 进阶深讲 09 · 道生一（成片约 11:17）
 
-材料：[`detail/09-dao-sheng-yi/`](detail/09-dao-sheng-yi/) · YouTube https://youtu.be/odkw8-ZSNvs （不公开）
+材料：[`detail/09-dao-sheng-yi/`](detail/09-dao-sheng-yi/) · YouTube：https://youtu.be/d8pJ5l3bWug
 
 来源：[`detail/09-dao-sheng-yi/final/youtube.md`](detail/09-dao-sheng-yi/final/youtube.md)
 
@@ -220,7 +224,7 @@
 
 ### 进阶深讲 10 · 反者道之动（成片约 10:26）
 
-材料：[`detail/10-fan-zhe/`](detail/10-fan-zhe/) · YouTube https://youtu.be/XlhS82YiU7o （不公开）
+材料：[`detail/10-fan-zhe/`](detail/10-fan-zhe/) · YouTube：https://youtu.be/IV2gpiamVXU
 
 来源：[`detail/10-fan-zhe/final/youtube.md`](detail/10-fan-zhe/final/youtube.md)
 
@@ -239,7 +243,7 @@
 
 ### 进阶深讲 11 · 知其雄守其雌（成片约 11:51）
 
-材料：[`detail/11-xiong-ci/`](detail/11-xiong-ci/) · YouTube https://youtu.be/z6qSAbYMsbc （不公开）
+材料：[`detail/11-xiong-ci/`](detail/11-xiong-ci/) · YouTube：https://youtu.be/Bpz6d7x2M7w
 
 来源：[`detail/11-xiong-ci/final/youtube.md`](detail/11-xiong-ci/final/youtube.md)
 
@@ -258,7 +262,7 @@
 
 ### 进阶深讲 12 · 无为而无不为（成片约 09:10）
 
-材料：[`detail/12-wu-wei/`](detail/12-wu-wei/) · YouTube https://youtu.be/9sM3ydYjWwo （不公开）
+材料：[`detail/12-wu-wei/`](detail/12-wu-wei/) · YouTube：https://youtu.be/NgMUnObfVSg
 
 来源：[`detail/12-wu-wei/final/youtube.md`](detail/12-wu-wei/final/youtube.md)
 
