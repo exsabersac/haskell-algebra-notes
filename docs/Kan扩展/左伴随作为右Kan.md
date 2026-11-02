@@ -123,5 +123,6 @@ UP 对不上：\(\mathrm{Lan}_R(\mathrm{Id})\) 的 UP 是 \(\mathrm{Nat}(\mathrm
 
 ## 另见
 
-- [定义与UP](定义与UP.md) — Lan／Ran 的 UP 与点值
+- [定义与UP](定义与UP.md) — Lan／Ran 的 UP 与点值；Haskell 口感表
 - [余密度单子](余密度单子.md) — \(T^R=\mathrm{Ran}_R(R)\cong R\circ L\)
+- [`src/KanDemo/Demo.hs`](../../src/KanDemo/Demo.hs) — Ran／Codensity 玩具（伴随刻画本身无单独编码）

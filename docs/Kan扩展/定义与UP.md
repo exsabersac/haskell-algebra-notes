@@ -103,14 +103,27 @@ UP：
 
 ---
 
-## 5. Yoneda / Coyoneda（Haskell 影子，一句）
+## 5. Haskell 口感：Coyoneda ↔ Lan，Yoneda ↔ Ran
 
-不必展开细证，只记味道：
+不必展开细证；对照表记口感，可跑代码见 [`src/KanDemo/Demo.hs`](../../src/KanDemo/Demo.hs)。
 
-- **Coyoneda** 有左 Kan 扩展的自由延拓味道（「多加一层再解释」）。
-- **Yoneda** 有右 Kan／表示的保守味道（「用 Hom 测出来」）。
+| | 口号（一句） | 类型影子 |
+|--|--------------|----------|
+| **Coyoneda** ↔ **Lan** | 最自由：多挂一层箭头，稍后再解释 | `Coyoneda f a = ∃b. (b → a, f b)`；`lift`/`lower` |
+| **Yoneda** ↔ **Ran** | 最保守：用 Hom 把值「测」出来 | `Yoneda f a = ∀b. (a → b) → f b`（表示／end 味道） |
 
-具体编码与证明留在表示／Yoneda 专题；此处仅作记忆锚点。
+再记两句：
+
+- Lan ↔ coend／「求和」；Ran ↔ end／「求积／函数空间」——Haskell 里 end 常塌成 `forall`。
+- 余密度单子 \(T^G=\mathrm{Ran}_G(G)\) 的点值即 `Codensity g a = ∀b. (a → g b) → g b`；常值特例是 `Cont`（见 [余密度单子](余密度单子.md)）。
+
+```haskell
+-- demo 里有：lift/lower Coyoneda、Cont 数字、Codensity Id
+liftCoy  :: f a -> Coyoneda f a
+lowerCoy :: Functor f => Coyoneda f a -> f a
+```
+
+具体编码与 Yoneda 细证仍可另文；此处把「影子」钉到可跑 demo。
 
 ---
 
@@ -120,7 +133,7 @@ UP：
 2. \(\mathrm{Lan}_K F\) 最自由，单位 \(F\Rightarrow(\mathrm{Lan}_K F)\circ K\)；\(\mathrm{Ran}_K F\) 最保守，\((\mathrm{Ran}_K F)\circ K\Rightarrow F\)；UP 用 Nat 表述。
 3. \(\mathbf{Set}\) 点值：Lan 用 coend \(\int^c\mathcal{D}(Kc,d)\cdot F(c)\)；Ran 用 end \(\int_c[\mathcal{D}(d,Kc),F(c)]\)。
 4. 极限收拢图；Kan 延拓函子；伴随可用特殊 Kan 刻画，三者勿混为一谈。
-5. Coyoneda≈左 Kan 味道，Yoneda≈右 Kan 味道（影子记忆，细证另文）。
+5. Coyoneda↔Lan、Yoneda↔Ran（口感表见 §5）；可跑：`src/KanDemo/Demo.hs`。
 
 ## 易混点
 
@@ -136,3 +149,4 @@ UP：
 
 - [左伴随作为右Kan](左伴随作为右Kan.md) — \(L\cong\mathrm{Ran}_R(\mathrm{Id})\) 等
 - [余密度单子](余密度单子.md) — \(T^G=\mathrm{Ran}_G(G)\)
+- [`src/KanDemo/Demo.hs`](../../src/KanDemo/Demo.hs) — Coyoneda / Cont / Codensity 短跑

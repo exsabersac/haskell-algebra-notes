@@ -4,7 +4,8 @@ version:            0.1.0.0
 synopsis:           Runnable demos for F-algebra / initial algebra / Free notes
 description:
   Small base-only demos aligning with docs/ — Fix, cata, Free, foldFree,
-  Free ≅ Fix (Sum (Const a) f), and common functor combos.
+  Free ≅ Fix (Sum (Const a) f), Kan (Coyoneda/Codensity toys), and common
+  functor combos.
 license:            MIT
 author:             exsabersac
 maintainer:         exsabersac@users.noreply.github.com
@@ -25,6 +26,7 @@ library
       InitialAlgebra.Demo
       FreeDemo.Demo
       FunctorCombo.Demo
+      KanDemo.Demo
       Lawvere.Demo
 
 executable algebra-demos

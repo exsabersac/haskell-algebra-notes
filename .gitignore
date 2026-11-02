@@ -13,3 +13,4 @@ cabal.sandbox.config
 .ghc.environment.*
 cabal.project.local
 cabal.project.local~
+.local-lib/

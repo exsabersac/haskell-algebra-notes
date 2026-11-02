@@ -63,7 +63,7 @@
 
 ### [Optics By Example](docs/Optics-By-Example/)
 
-Chris Penner《Optics By Example》各章中文要点摘要（Lens / Fold / Traversal / Prism / Iso 等）。索引见 [docs/Optics-By-Example/README.md](docs/Optics-By-Example/README.md)；可运行 demo 仍在 [tambara-lens-demo](https://github.com/exsabersac/tambara-lens-demo)。
+Chris Penner《Optics By Example》各章中文要点摘要（Lens / Fold / Traversal / Prism / Iso 等）。索引见 [docs/Optics-By-Example/README.md](docs/Optics-By-Example/README.md)；可运行 demo 仍在 [tambara-lens-demo](https://github.com/exsabersac/tambara-lens-demo)（本仓暂不内嵌 optics demo）。
 
 ### 可运行演示代码
 
@@ -75,6 +75,7 @@ Chris Penner《Optics By Example》各章中文要点摘要（Lens / Fold / Trav
 | [`src/InitialAlgebra/Demo.hs`](src/InitialAlgebra/Demo.hs) | [初始代数](docs/初始代数/) | F-代数、`cata`、带 `Lit` 的 `ExprF`、Lambek in/out |
 | [`src/FreeDemo/Demo.hs`](src/FreeDemo/Demo.hs) | [Free](docs/Free/) · [自由单子](docs/幺半范畴/自由单子.md) | 生成元、`Free ≅ Fix (Sum (Const a) f)`、`foldFree = cata`、`Free ((,) e)` |
 | [`src/FunctorCombo/Demo.hs`](src/FunctorCombo/Demo.hs) | [函子组合](docs/函子组合/) · [自由幺半群与列表](docs/幺半范畴/自由幺半群与列表.md) · [自由幺半群与ListF代数](docs/幺半范畴/自由幺半群与ListF代数.md) | `ListF` / `NonEmptyF`、`Sum`/`Product`/`Const` 草图；`μ(ListF)≅[]` 亦见自由 monoid 笔记 |
+| [`src/KanDemo/Demo.hs`](src/KanDemo/Demo.hs) | [Kan扩展](docs/Kan扩展/) | Coyoneda≈Lan、Cont／Codensity≈Ran／余密度；仅 base |
 | [`src/Lawvere/Demo.hs`](src/Lawvere/Demo.hs) | [Lawvere理论](docs/Lawvere理论/) | ops/`Word2`/laws；List/Maybe；Identity/NE/Writer/Either/Reader/State `[1]`–`[12]` |
 | [`app/Main.hs`](app/Main.hs) | — | `cabal run` 入口 |
 
